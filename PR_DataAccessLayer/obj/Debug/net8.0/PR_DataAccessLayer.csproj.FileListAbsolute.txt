@@ -1,0 +1,12 @@
+D:\DestopsApplications\PR_DataAccessLayer\bin\Debug\net8.0\PR_DataAccessLayer.deps.json
+D:\DestopsApplications\PR_DataAccessLayer\bin\Debug\net8.0\PR_DataAccessLayer.dll
+D:\DestopsApplications\PR_DataAccessLayer\bin\Debug\net8.0\PR_DataAccessLayer.pdb
+D:\DestopsApplications\PR_DataAccessLayer\obj\Debug\net8.0\PR_DataAccessLayer.csproj.AssemblyReference.cache
+D:\DestopsApplications\PR_DataAccessLayer\obj\Debug\net8.0\PR_DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\DestopsApplications\PR_DataAccessLayer\obj\Debug\net8.0\PR_DataAccessLayer.AssemblyInfoInputs.cache
+D:\DestopsApplications\PR_DataAccessLayer\obj\Debug\net8.0\PR_DataAccessLayer.AssemblyInfo.cs
+D:\DestopsApplications\PR_DataAccessLayer\obj\Debug\net8.0\PR_DataAccessLayer.csproj.CoreCompileInputs.cache
+D:\DestopsApplications\PR_DataAccessLayer\obj\Debug\net8.0\PR_DataAccessLayer.dll
+D:\DestopsApplications\PR_DataAccessLayer\obj\Debug\net8.0\refint\PR_DataAccessLayer.dll
+D:\DestopsApplications\PR_DataAccessLayer\obj\Debug\net8.0\PR_DataAccessLayer.pdb
+D:\DestopsApplications\PR_DataAccessLayer\obj\Debug\net8.0\ref\PR_DataAccessLayer.dll
