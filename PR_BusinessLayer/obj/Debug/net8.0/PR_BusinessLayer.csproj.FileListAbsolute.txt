@@ -1,0 +1,15 @@
+D:\DestopsApplications\PR_BusinessLayer\bin\Debug\net8.0\PR_BusinessLayer.deps.json
+D:\DestopsApplications\PR_BusinessLayer\bin\Debug\net8.0\PR_BusinessLayer.dll
+D:\DestopsApplications\PR_BusinessLayer\bin\Debug\net8.0\PR_BusinessLayer.pdb
+D:\DestopsApplications\PR_BusinessLayer\bin\Debug\net8.0\PR_DataAccessLayer.dll
+D:\DestopsApplications\PR_BusinessLayer\bin\Debug\net8.0\PR_DataAccessLayer.pdb
+D:\DestopsApplications\PR_BusinessLayer\obj\Debug\net8.0\PR_BusinessLayer.csproj.AssemblyReference.cache
+D:\DestopsApplications\PR_BusinessLayer\obj\Debug\net8.0\PR_BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\DestopsApplications\PR_BusinessLayer\obj\Debug\net8.0\PR_BusinessLayer.AssemblyInfoInputs.cache
+D:\DestopsApplications\PR_BusinessLayer\obj\Debug\net8.0\PR_BusinessLayer.AssemblyInfo.cs
+D:\DestopsApplications\PR_BusinessLayer\obj\Debug\net8.0\PR_BusinessLayer.csproj.CoreCompileInputs.cache
+D:\DestopsApplications\PR_BusinessLayer\obj\Debug\net8.0\PR_Busin.DDC8779D.Up2Date
+D:\DestopsApplications\PR_BusinessLayer\obj\Debug\net8.0\PR_BusinessLayer.dll
+D:\DestopsApplications\PR_BusinessLayer\obj\Debug\net8.0\refint\PR_BusinessLayer.dll
+D:\DestopsApplications\PR_BusinessLayer\obj\Debug\net8.0\PR_BusinessLayer.pdb
+D:\DestopsApplications\PR_BusinessLayer\obj\Debug\net8.0\ref\PR_BusinessLayer.dll
