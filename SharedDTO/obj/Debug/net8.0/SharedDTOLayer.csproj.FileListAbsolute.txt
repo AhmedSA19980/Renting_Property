@@ -1,0 +1,11 @@
+D:\DestopsApplications\SharedDTOl\bin\Debug\net8.0\SharedDTOLayer.deps.json
+D:\DestopsApplications\SharedDTOl\bin\Debug\net8.0\SharedDTOLayer.dll
+D:\DestopsApplications\SharedDTOl\bin\Debug\net8.0\SharedDTOLayer.pdb
+D:\DestopsApplications\SharedDTOl\obj\Debug\net8.0\SharedDTOLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\DestopsApplications\SharedDTOl\obj\Debug\net8.0\SharedDTOLayer.AssemblyInfoInputs.cache
+D:\DestopsApplications\SharedDTOl\obj\Debug\net8.0\SharedDTOLayer.AssemblyInfo.cs
+D:\DestopsApplications\SharedDTOl\obj\Debug\net8.0\SharedDTOLayer.csproj.CoreCompileInputs.cache
+D:\DestopsApplications\SharedDTOl\obj\Debug\net8.0\SharedDTOLayer.dll
+D:\DestopsApplications\SharedDTOl\obj\Debug\net8.0\refint\SharedDTOLayer.dll
+D:\DestopsApplications\SharedDTOl\obj\Debug\net8.0\SharedDTOLayer.pdb
+D:\DestopsApplications\SharedDTOl\obj\Debug\net8.0\ref\SharedDTOLayer.dll
