@@ -1,53 +1,12 @@
 ﻿using System.Data;
-using System.Diagnostics;
-using System.Net;
 using Microsoft.Data.SqlClient;
+
+using SharedDTOLayer.Properties_.PropertiesDTO;
 
 namespace PR_DataAccessLayer
 {
 
-    public class PropertyDTOWithContainerDTO
-    {
-       
-        public PropertyDTO Property { get; set; }
-        public ImagesDTO Container { get; set; }
-    }
-    public class PropertyDTO
-    {
-        public PropertyDTO(int PropertyID, int CountryID, string City, string Address,
-          string PlaceDescription, int ContainerID, 
-         byte NumberOfBedRooms, byte NumberOfBathRooms, byte PropertyTypeID, decimal Price, string Name)
-        {
-            this.PropertyID = PropertyID;
-            this.CountryID = CountryID;
-            this.City = City;
-            this.Address = Address;
-            this.PlaceDescription = PlaceDescription;
-            this.ContainerID = ContainerID;
-            this.NumberOfBedrooms = NumberOfBedRooms;
-            this.NumberOfBathrooms = NumberOfBathRooms;
-            this.PropertyTypeID = PropertyTypeID;
-            this.Price = Price;
-            this.Name = Name;   
 
-
-        }
-      
-        public int PropertyID { get; set; }
-        public int CountryID { get; set; }
-        public string City { get; set; }
-        public string Address { get; set; }
-        public string PlaceDescription { get; set; }
-
-        public int ContainerID { get; set; }
-        public byte NumberOfBedrooms { get; set; }
-        public byte NumberOfBathrooms { get; set; }
-        public byte PropertyTypeID { get; set; }
-       
-
-        public decimal Price { get; set; }
-        public string Name { get; set; }
-    }
     public class clsPropertyData
     {
 
@@ -73,8 +32,7 @@ namespace PR_DataAccessLayer
 
 
                             decimal Price = reader.IsDBNull(reader.GetOrdinal("Price")) ? 0 : reader.GetDecimal(reader.GetOrdinal("Price"));
-                            // bool IsPropertyDeleted = reader.IsDBNull(reader.GetOrdinal("IsPropertyDeleted")) ? false : reader.GetBoolean(reader.GetOrdinal("IsPropertyDeleted"));
-
+                           
                             PropertyList.Add(new PropertyDTO
                             (
                                 reader.GetInt32(reader.GetOrdinal("PropertyID")),
@@ -86,6 +44,58 @@ namespace PR_DataAccessLayer
                                        reader.GetInt32(reader.GetOrdinal("ContainerID")),
                                       
                                       
+                                          reader.GetByte(reader.GetOrdinal("NumberOfBedrooms")),
+                                            reader.GetByte(reader.GetOrdinal("NumberOfBathrooms")),
+                                              reader.GetByte(reader.GetOrdinal("PropertyTypeID")),
+                                              Price,
+                                              reader.GetString(reader.GetOrdinal("Name"))
+                                             
+                            ));
+                        }
+                    }
+                }
+
+
+                return PropertyList;
+            }
+
+        }
+
+
+
+        public static List<PropertyDTO> GetAllActiveProperty()
+        {
+            var PropertyList = new List<PropertyDTO>();
+
+            using (SqlConnection conn = new SqlConnection(clsDataSettings.Addresss))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("SP_GetAllActiveProperties", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string PlaceDescription = reader.IsDBNull(reader.GetOrdinal("PlaceDescription")) ? "" : reader.GetString(reader.GetOrdinal("PlaceDescription"));
+
+
+                            decimal Price = reader.IsDBNull(reader.GetOrdinal("Price")) ? 0 : reader.GetDecimal(reader.GetOrdinal("Price"));
+
+                            PropertyList.Add(new PropertyDTO
+                            (
+                                reader.GetInt32(reader.GetOrdinal("PropertyID")),
+                                    reader.GetInt32(reader.GetOrdinal("CountryID")),
+                                    reader.GetString(reader.GetOrdinal("City")),
+                                     reader.GetString(reader.GetOrdinal("Address")),
+                                     PlaceDescription,
+
+                                       reader.GetInt32(reader.GetOrdinal("ContainerID")),
+
+
                                           reader.GetByte(reader.GetOrdinal("NumberOfBedrooms")),
                                             reader.GetByte(reader.GetOrdinal("NumberOfBathrooms")),
                                               reader.GetByte(reader.GetOrdinal("PropertyTypeID")),
@@ -103,8 +113,6 @@ namespace PR_DataAccessLayer
 
         }
 
-
-        //**************************   implement full porperties info
 
 
         public static PropertyDTO FindPropertyByPropertyID2(int PropertyID)
@@ -128,8 +136,6 @@ namespace PR_DataAccessLayer
 
 
 
-
-
                         using (var reader = command.ExecuteReader())
                         {
 
@@ -140,8 +146,7 @@ namespace PR_DataAccessLayer
 
 
                                 decimal Price = reader.IsDBNull(reader.GetOrdinal("Price")) ? 0 : reader.GetDecimal(reader.GetOrdinal("Price"));
-                                // bool IsPropertyDeleted = reader.IsDBNull(reader.GetOrdinal("IsPropertyDeleted")) ? false : reader.GetBoolean(reader.GetOrdinal("IsPropertyDeleted"));
-
+                               
 
 
                                 return new PropertyDTO(
@@ -153,15 +158,15 @@ namespace PR_DataAccessLayer
 
                                        reader.GetInt32(reader.GetOrdinal("ContainerID")),
                                        
-                                        reader.GetByte(reader.GetOrdinal("PropertyTypeID")),
+                                       
                                           reader.GetByte(reader.GetOrdinal("NumberOfBedrooms")),
                                             reader.GetByte(reader.GetOrdinal("NumberOfBathrooms")),
+                                             reader.GetByte(reader.GetOrdinal("PropertyTypeID")),
                                             Price ,
                                               reader.GetString(reader.GetOrdinal("Name"))
                                               
-
-                                    //  IsPropertyDeleted
-                                    );
+                                  
+                                );
 
 
                             }
@@ -185,11 +190,79 @@ namespace PR_DataAccessLayer
         }
 
 
-        public static int AddProperty(PropertyDTO PropertyDTO)
+
+
+        public static List< PropertyStatusDTO> GetAllPropertiesByClientId(int ClientId)
+        {
+
+            List<PropertyStatusDTO> Properties = new List<PropertyStatusDTO>();
+            try
+            {
+               
+
+                using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
+                {
+
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("SP_GetAllPropertiesByClientId", connection))
+                    {
+
+
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@ClientId", (object)ClientId ?? DBNull.Value);
+
+
+
+                        using (var reader = command.ExecuteReader())
+                        {
+
+                            while (reader.Read())
+                            {
+
+                                
+
+                                 Properties.Add(new PropertyStatusDTO(
+                                    reader.GetInt32(reader.GetOrdinal("PropertyID")),
+                                       reader.GetString(reader.GetOrdinal("Name")),
+                                    reader.GetString(reader.GetOrdinal("CountryName")),
+                                    reader.GetString(reader.GetOrdinal("City")),
+                                     reader.GetString(reader.GetOrdinal("Address")),
+                                        reader.GetString(reader.GetOrdinal("PropertyTypeName")),
+
+                                       reader.GetDecimal(reader.GetOrdinal("Price")),
+                                          reader.GetString(reader.GetOrdinal("PropertyStatus"))
+
+
+                                ));
+
+
+                            }
+
+                            reader.Close();
+
+                        }
+                        connection.Close();
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+
+            }
+
+            return Properties;
+        }
+
+
+        public static int AddProperty(PropertyAndClientDTO PropertyDTO )
         {
 
             int PropertyID = -1;
-            int clientID = -1;
+            int PropertyOwnerID = -1;
             try
             {
                 using (var connection = new SqlConnection(clsDataSettings.Addresss))
@@ -206,7 +279,7 @@ namespace PR_DataAccessLayer
 
                         command.Parameters.AddWithValue("@Address", PropertyDTO.Address);
 
-                        if (PropertyDTO.PlaceDescription != "" && PropertyDTO.PlaceDescription != null)
+                        if (PropertyDTO.PlaceDescription != "" || PropertyDTO.PlaceDescription != null)
                         {
                             command.Parameters.AddWithValue("@PlaceDescription", PropertyDTO.PlaceDescription);
                         }
@@ -214,11 +287,10 @@ namespace PR_DataAccessLayer
                             command.Parameters.AddWithValue("@PlaceDescription", System.DBNull.Value);
 
 
-                       
+
                         command.Parameters.AddWithValue("@ContainerID", PropertyDTO.ContainerID);
 
-                      
-                       
+
                         command.Parameters.AddWithValue("@NumberOfBedRooms", PropertyDTO.NumberOfBedrooms);
                         command.Parameters.AddWithValue("@NumberOfBathRooms", PropertyDTO.NumberOfBathrooms);
                         command.Parameters.AddWithValue("@PropertyTypeID", PropertyDTO.PropertyTypeID);
@@ -228,31 +300,54 @@ namespace PR_DataAccessLayer
                         }
                         else
                             command.Parameters.AddWithValue("@Price", PropertyDTO.Price);
+
                         command.Parameters.AddWithValue("@Name", PropertyDTO.Name);
 
-
-                        command.Parameters.AddWithValue("@ClientID", 14);
-
-
-
-
+                        //* add client id to property DTO and once user loged in , client id comes from token => api
+                        command.Parameters.AddWithValue("@ClientID", PropertyDTO.ClientID); 
 
 
                         SqlParameter outputIdParam = new SqlParameter("@PropertyID", SqlDbType.Int)
                         {
                             Direction = ParameterDirection.Output
                         };
+
                         command.Parameters.Add(outputIdParam);
+                        SqlParameter outputIdParam2 = new SqlParameter("@PropertyOwnerID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        
+                        command.Parameters.Add(outputIdParam2);
 
 
-                        command.ExecuteScalar();
+                        command.ExecuteNonQuery();
 
+                        
+                        if (outputIdParam.Value != DBNull.Value)
+                        {
+                            PropertyID = (int)outputIdParam.Value;
+                        }
+                        else
+                        {
+                         
+                          //  Console.WriteLine("Warning: PropertyID returned NULL from SP_AddNewProperty.");
+                          
+                            PropertyID = -1; // Indicate failure
+                        }
 
+                        if (outputIdParam2.Value != DBNull.Value)
+                        {
+                            PropertyOwnerID = (int)outputIdParam2.Value;
+                        }else
+                        {
+                            Console.WriteLine("Warning: PropertyOwnerID returned NULL from SP_AddNewProperty.");
+                           
+                            PropertyOwnerID = -1;
+                        }
 
-                        PropertyID = (int)command.Parameters["@PropertyID"].Value;
-                        clientID = (int)command.Parameters["@propertyOwnerID"].Value;
+                        connection.Close();
                     }
-                    connection.Close();
                 }
             }catch(Exception ex)
             {
@@ -286,7 +381,7 @@ namespace PR_DataAccessLayer
 
                         command.Parameters.AddWithValue("@City", PropertyDTO.City);
 
-                        if (PropertyDTO.PlaceDescription != "" && PropertyDTO.PlaceDescription != null)
+                        if (PropertyDTO.PlaceDescription == "" && PropertyDTO.PlaceDescription == null)
                         {
                             command.Parameters.AddWithValue("@PlaceDescription", System.DBNull.Value);
                         }
@@ -328,16 +423,6 @@ namespace PR_DataAccessLayer
 
 
 
-
-
-
-
-
-
-
-
-
-
         public static int CheckActivePropertyDiscount(int PropertyID)
         {
             int discountID = 0;
@@ -361,8 +446,8 @@ namespace PR_DataAccessLayer
                         }
                         else
                         {
-                            // Handle the case where no discount is found
-                            discountID = -1; // Or another default value
+                            
+                            discountID = -1; 
                         }
                     }
                 }
@@ -389,7 +474,7 @@ namespace PR_DataAccessLayer
 
                     using (SqlCommand command = new SqlCommand("SP_GetRandomPropertyID", connection))
                     {
-                       // command.Parameters.AddWithValue("@PropertyID", PropertyID);
+                       
                         Console.WriteLine(command.CommandText);
                         object result = command.ExecuteScalar();
 
@@ -400,8 +485,8 @@ namespace PR_DataAccessLayer
                         }
                         else
                         {
-                            // Handle the case where no discount is found
-                            PropertyID = -1; // Or another default value
+                         
+                            PropertyID = -1; 
                         }
                     }
                 }
@@ -416,110 +501,6 @@ namespace PR_DataAccessLayer
         }
 
 
-
-        public static bool FindPropertyByPropertyID(int PropertyID, ref int CountryID, ref string City, ref string Address,
-           ref string PlaceDescription, ref int ImagesContainerID, ref decimal Price,
-          ref byte PropertyTypeID, ref byte NumberOfBedRooms, ref byte NumberOfBathRooms, ref bool IsPropertyDeleted)
-        {
-
-            bool isFound = false;
-            try
-            {
-
-
-                using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand("SP_FindPropertyByPropertyID", connection))
-                    {
-
-
-                        command.CommandType = CommandType.StoredProcedure;
-
-                        command.Parameters.AddWithValue("@PropertyID", (object)PropertyID ?? DBNull.Value);
-
-
-                        //SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
-                        //{
-                        //    Direction = ParameterDirection.ReturnValue
-                        //};
-
-
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-
-
-                            if (reader.Read())
-                            {
-                                // The record was found
-                                isFound = true;
-                                PropertyID = (int)reader["PropertyID"];
-                                CountryID = (int)reader["CountryID"];
-                                ImagesContainerID = (int)reader["ContainerID"];
-                                Address = (string)reader["Address"];
-                                City = (string)reader["City"];
-                                PropertyTypeID = (byte)reader["PropertyTypeID"];
-                                NumberOfBathRooms = (byte)reader["NumberOfBathRooms"];
-                                NumberOfBedRooms = (byte)reader["NumberOfBedRooms"];
-
-
-                                if (reader["PlaceDescription"] == DBNull.Value)
-                                {
-                                    PlaceDescription = "";
-                                }
-                                else
-                                {
-                                    PlaceDescription = (string)reader["PlaceDescription"];
-
-                                }
-
-                                if (reader["Price"] == DBNull.Value)
-                                {
-                                    Price = 0;
-                                }
-                                else
-                                {
-                                    Price = (decimal)reader["Price"];
-
-                                }
-
-
-                                if (reader["IsPropertyDeleted"] == DBNull.Value)
-                                {
-                                    IsPropertyDeleted = false;
-                                }
-                                else
-                                {
-                                    IsPropertyDeleted = (bool)reader["IsPropertyDeleted"];
-
-
-                                }
-
-
-                            }
-                            else
-                            {
-                                // The record was not found
-                                isFound = false;
-                            }
-
-                            reader.Close();
-
-                        }
-                        connection.Close();
-                    }
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-                isFound = false;
-            }
-
-            return isFound;
-        }
 
         public static bool DeleteProperty(int PropertyID)
         {

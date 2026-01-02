@@ -1,80 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
+using SharedDTOLayer.Offer.DiscountDTO;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.Reflection.PortableExecutable;
+
 
 
 namespace PR_DataAccessLayer
 {
-
-    public class DiscountDTO
-    {
-        public DiscountDTO(int discountID,  int propertyId,  decimal discountPercentage,
-            DateTime startDate,  DateTime endDate,  bool isDeleted) {
-            this.DiscountID = discountID;
-            this.PropertyID = propertyId;   
-            this.DiscountPercentage = discountPercentage;
-            this.StartDate = startDate; 
-            this.EndDate = endDate;
-            this.IsDeleted = isDeleted;
-        
-        }
-        public DiscountDTO() { }
-
-
-
-        public int DiscountID { get; set; }
-        public int PropertyID { get; set; }
-        public decimal DiscountPercentage { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public bool IsDeleted { get; set; }
-    }
-
-
-    public class PropertyDiscountDTO
-    {
-
-        public PropertyDiscountDTO(int DiscountID , int PropertyID ,string CountryName ,string City , string Address , decimal Price,
-            decimal DiscountPercentage , DateTime StartDate ,DateTime EndDate , bool IsCompeleted , bool IsPropertyDeleted) { 
-        
-            this.DiscountID = DiscountID;
-            this.PropertyID = PropertyID;
-            this.CountryName = CountryName;
-            this.City = City;
-            this.Address = Address;
-            this.Price = Price;
-            this.DiscountPercentage = DiscountPercentage;
-            this.StartDate = StartDate;
-            this.EndDate = EndDate;
-            this.IsCompeleted = IsCompeleted;
-            this.IsPropertyDeleted = IsPropertyDeleted;
-
-        }    
-        public int DiscountID { get; set; }
-        public int PropertyID { get; set; }
-        public decimal DiscountPercentage { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public bool IsCompeleted { get; set; }
-
-     
-        //public int CountryID { get; set; }
-        public string CountryName { get; set; }
-
-        public string City { get; set; }
-        public string Address { get; set; }
-     
-        public decimal Price { get; set; }
-        public bool IsPropertyDeleted { get; set; }
-
-      //  public string Name { get; set; }
-    }
 
 
     public class clsDiscountData
@@ -109,7 +40,7 @@ namespace PR_DataAccessLayer
                                         reader.GetBoolean(reader.GetOrdinal("IsDeleted"))
 
 
-                                        );
+                                    );
                               
                            
                             }
@@ -125,7 +56,7 @@ namespace PR_DataAccessLayer
             {
                 Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
-            }
+            }   
 
             return null;
         }
@@ -160,7 +91,7 @@ namespace PR_DataAccessLayer
                                         reader.GetBoolean(reader.GetOrdinal("IsDeleted"))
 
 
-                                        );
+                                );
 
                             }
                          
@@ -301,7 +232,7 @@ namespace PR_DataAccessLayer
                                        reader.GetBoolean(reader.GetOrdinal("IsCompeleted")),
                                         reader.GetBoolean(reader.GetOrdinal("IsPropertyDeleted"))
 
-                                       ));
+                                ));
 
                             }
 
@@ -431,10 +362,6 @@ namespace PR_DataAccessLayer
 
             return rowsAffected > 0;
         }
-
-
-
-   
 
     }
 }

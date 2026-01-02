@@ -1,44 +1,17 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using Microsoft.Data.SqlClient;
-using PR_DataAccessLayer;
+using SharedDTOLayer.People.PeopleDTO;
+
+
+
 namespace PR_DataAccessLayer
 {
 
-    public class PersonDTO {
 
-      public  int PersonID { get; set; }
-        public string FirstName { set; get; }
-        public string LastName { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public bool Gender { get; set; }
-        public string Address { get; set; }
-        public int NationalityCountryID { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-        public string PersonalImage {  get; set; }
-        public PersonDTO() { }
-        public PersonDTO(int PersonID, string firstname , string lastname , DateTime dateOfBirth ,bool Gender , 
-            string Address , int nationalityCountryId , string phone , string email  , string personalImage) { 
-        
-            this.PersonID = PersonID;
-            this.FirstName = firstname;
-            this.LastName = lastname;
-            this.DateOfBirth = dateOfBirth;
-            this.Gender = Gender;
-            this.Address = Address;
-            this.NationalityCountryID = nationalityCountryId;   
-            this.Phone = phone;
-            this.Email = email;
-            this.PersonalImage = personalImage;
-        
-
-        }
-    }
     public  class clsPeopleData
     {
 
-       // public static int GetPersonID;
+       
 
         public static PersonDTO FindPersonByPersonID(int PersonID)
         {
@@ -58,12 +31,6 @@ namespace PR_DataAccessLayer
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
-
-
-                        //SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
-                        //{
-                        //    Direction = ParameterDirection.ReturnValue
-                        //};
 
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -164,7 +131,7 @@ namespace PR_DataAccessLayer
             catch (Exception ex) { Console.WriteLine("Error: " + ex.Message); }
 
 
-            //GetPersonID = PersonID;
+         
 
             return PersonID;
 
@@ -186,7 +153,7 @@ namespace PR_DataAccessLayer
                     using (SqlCommand cmd = new SqlCommand("SP_BlockUser", connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@PersonID", PersonID);
+                        cmd.Parameters.AddWithValue("@clientID", PersonID);
                         rowsAffected = cmd.ExecuteNonQuery();
 
 
@@ -211,7 +178,7 @@ namespace PR_DataAccessLayer
                     using (SqlCommand cmd = new SqlCommand("SP_UnBlockUser", connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@PersonID", PersonID);
+                        cmd.Parameters.AddWithValue("@clientID", PersonID);
                         rowsAffected = cmd.ExecuteNonQuery();
 
 
@@ -233,7 +200,7 @@ namespace PR_DataAccessLayer
                 {
                     connection.Open();
 
-                    // Replace "SP_UpdateUser" with the actual stored procedure name for user update
+              
                     using (SqlCommand cmd = new SqlCommand("SP_UpdateNewPerson", connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
@@ -250,7 +217,7 @@ namespace PR_DataAccessLayer
                         cmd.Parameters.AddWithValue("@Email", Person.Email);
 
 
-                        // Assuming PersonalImage is a path, you might need additional logic for storing it.
+                        //  PersonalImage is a path
                         cmd.Parameters.AddWithValue("@PersonalImage",Person.PersonalImage);
 
                         rowsAffected = cmd.ExecuteNonQuery();
@@ -270,48 +237,85 @@ namespace PR_DataAccessLayer
 
 
 
-        public static bool DeletePerson(int PersonId)
+
+        public static int GetClientIdByEmail(string Email)
         {
-
-
-            int RowAffected = -1;
+            int PersonID = -1;
 
             try
             {
-
                 using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
                 {
                     connection.Open();
-                    using (SqlCommand cmd = new SqlCommand("", connection))
+
+                    using (SqlCommand command = new SqlCommand("SP_GetPersonIdByPersonEmail", connection))
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@PersonId", PersonId);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@email", Email);
+                        //Console.WriteLine(command.CommandText);
+                        object result = command.ExecuteScalar();
 
+                        if (result != null )
+                        {
 
-                       
-                        RowAffected = cmd.ExecuteNonQuery();
-
+                            PersonID = (int)result;
+                        }
+                        else
+                        {
+                            // Handle the case where no discount is found
+                            PersonID = -1; // Or another default value
+                        }
                     }
-                    connection.Close();
-
                 }
-
-
-
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                Console.WriteLine($"Error: {ex.Message}");
             }
 
 
-
-            return (RowAffected > 0);
-
+            return PersonID;
         }
+        public static int GetClientIdByPersonID(int PersonID)
+        {
+            int clientID = -1;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_GetClientIdByPersonID", connection))
+                    {
+
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@PersonID", PersonID);
+                 
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+
+                            clientID = (int)result;
+                        }
+                        else
+                        {
+                          
+                            clientID = -1; 
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
 
 
+            return clientID;
+        }
         public static bool IsUserBlocked(int personId)
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
@@ -321,7 +325,7 @@ namespace PR_DataAccessLayer
                     command.CommandType = System.Data.CommandType.StoredProcedure;
 
                     // Add the input parameter
-                    command.Parameters.AddWithValue("@PersonID", personId);
+                    command.Parameters.AddWithValue("@clientID", personId);
 
                     // Add the output parameter
                     SqlParameter isBlockedParam = new SqlParameter("@IsBlocked", System.Data.SqlDbType.Bit);
@@ -345,13 +349,15 @@ namespace PR_DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        // Handle any potential database errors
+                     
                         Console.WriteLine($"Error checking user block status: {ex.Message}");
-                        return false; // Or throw the exception, depending on your error handling strategy
+                        return false; 
                     }
                 }
             }
         }
 
     }
+
+ 
 }
