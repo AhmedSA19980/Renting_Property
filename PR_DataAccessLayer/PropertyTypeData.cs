@@ -1,27 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using Microsoft.Data.SqlClient;
-using PR_DataAccessLayer;
+using SharedDTOLayer.PropertyTypes.PropertyTypesDTO;
+
+
+
 namespace PR_DataAccessLayer
 {
 
-    public class PropertyTypeDTO
-    {
-        public byte   PropertyTypeID { set; get; }    
-        public string PropertyTypeName { set; get; }
-
-        public PropertyTypeDTO(byte PropertyTypeID, string PropertyTypeName)
-        {
-            this.PropertyTypeID = PropertyTypeID;
-            this.PropertyTypeName = PropertyTypeName;
-        }
-    
-    }
     public class clsPropertyTypeData
     {
 
@@ -41,12 +26,6 @@ namespace PR_DataAccessLayer
 
 
                         command.Parameters.AddWithValue("@PropertyTypeID",(object) PropertyTypeID ?? DBNull.Value);
-
-                        //SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
-                        //{
-                        //    Direction = ParameterDirection.ReturnValue
-                        //};
-
                     
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -172,12 +151,6 @@ namespace PR_DataAccessLayer
         }
 
 
-
-
-
-
-
-
         public static DataTable GetAllPropertiesType()
         {
 
@@ -247,14 +220,7 @@ namespace PR_DataAccessLayer
 
 
                         cmd.ExecuteScalar();
-                        /*if (outputIdParam.Value != DBNull.Value)
-                        {
-                            PropertyTypeID = Convert.ToSByte(outputIdParam.Value); // Use Convert.ToSByte for better type handling
-                        }
-                        else return -1;
-                        */
-                        //PropertyTypeID = (byte)cmd.Parameters["@PropertyTypeID"].Value;
-
+                        
                     }
                     connection.Close();
                 }

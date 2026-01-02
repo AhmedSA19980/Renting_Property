@@ -502,6 +502,109 @@ namespace PR_DataAccessLayer
 
 
 
+<<<<<<< HEAD
+=======
+     /*   public static bool FindPropertyByPropertyID(int PropertyID, ref int CountryID, ref string City, ref string Address,
+           ref string PlaceDescription, ref int ImagesContainerID, ref decimal Price,
+          ref byte PropertyTypeID, ref byte NumberOfBedRooms, ref byte NumberOfBathRooms, ref bool IsPropertyDeleted)
+        {
+
+            bool isFound = false;
+            try
+            {
+
+
+                using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("SP_FindPropertyByPropertyID", connection))
+                    {
+
+
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@PropertyID", (object)PropertyID ?? DBNull.Value);
+
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+
+
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                isFound = true;
+                                PropertyID = (int)reader["PropertyID"];
+                                CountryID = (int)reader["CountryID"];
+                                ImagesContainerID = (int)reader["ContainerID"];
+                                Address = (string)reader["Address"];
+                                City = (string)reader["City"];
+                              
+                               
+                                NumberOfBedRooms = (byte)reader["NumberOfBedRooms"];
+                                NumberOfBathRooms = (byte)reader["NumberOfBathRooms"];
+                                PropertyTypeID = (byte)reader["PropertyTypeID"];
+
+
+                                if (reader["PlaceDescription"] == DBNull.Value)
+                                {
+                                    PlaceDescription = "";
+                                }
+                                else
+                                {
+                                    PlaceDescription = (string)reader["PlaceDescription"];
+
+                                }
+
+                                if (reader["Price"] == DBNull.Value)
+                                {
+                                    Price = 0;
+                                }
+                                else
+                                {
+                                    Price = (decimal)reader["Price"];
+
+                                }
+
+
+                                if (reader["IsPropertyDeleted"] == DBNull.Value)
+                                {
+                                    IsPropertyDeleted = false;
+                                }
+                                else
+                                {
+                                    IsPropertyDeleted = (bool)reader["IsPropertyDeleted"];
+
+
+                                }
+
+
+                            }
+                            else
+                            {
+                                // The record was not found
+                                isFound = false;
+                            }
+
+                            reader.Close();
+
+                        }
+                        connection.Close();
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+
+            return isFound;
+        }*/
+
+>>>>>>> 181d326b7bf8c173b18d7da1085c2be6260daec5
         public static bool DeleteProperty(int PropertyID)
         {
 

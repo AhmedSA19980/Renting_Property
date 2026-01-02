@@ -1,72 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
+using SharedDTOLayer.clients.clientsDTO;
 using System.Data;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace PR_DataAccessLayer
 {
-    public class ClientDTO 
-    {
-        public ClientDTO(int ClientID , string username , string password  , int personID) { 
-        
-            this.ClientID = ClientID;
-            this.UserName = username;   
-            this.Password = password;   
-            this.PersonID = personID;
-
-
-        }
-        public int ClientID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }    
-        public int PersonID { get; set; }
-    }
-
-
-    public class FullClientDTO : PersonDTO
-    {
-     
-        public FullClientDTO(int ClientID, string UserName, string Password,  int ClientPersonID, int PersonID,
-            string FirstName, string LastName, DateTime DateOfBirth, bool Gender,
-            string Address, int NationalityCountryID, string Phone, string email, string personalImage): base(PersonID,  FirstName,  LastName,  DateOfBirth,  Gender,
-             Address, NationalityCountryID, Phone,  email,  personalImage)
-        {
-            this.ClientID = ClientID;
-            this.UserName = UserName;
-            this.Password = Password;
-            this.ClientPersonID = ClientPersonID;
-
-
-           this.PersonID = PersonID;
-            this.FirstName = FirstName; 
-            this.LastName = LastName;   
-            this.DateOfBirth = DateOfBirth;
-            this.Gender = Gender;
-            this.Address = Address;
-            this.NationalityCountryID = NationalityCountryID;
-            this.Phone = Phone; 
-            this.Email = email;
-            this.PersonalImage = personalImage; 
-            
-
-          
-        }
-        public FullClientDTO() { }
-        
-
-        public int ClientID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-       public int ClientPersonID { get; set; }
-    }
-
-
-
+   
     public class clsClientsData
     {
 
@@ -100,7 +39,8 @@ namespace PR_DataAccessLayer
                                     reader.GetInt32(reader.GetOrdinal("ClientID")),
                                     reader.GetString(reader.GetOrdinal("UserName")),
                                      reader.GetString(reader.GetOrdinal("Password")),
-                                      reader.GetInt32(reader.GetOrdinal("PersonID"))
+                                      reader.GetInt32(reader.GetOrdinal("PersonID")),
+                                      reader.GetByte(reader.GetOrdinal("Role"))
                                     );
 
 
@@ -154,6 +94,7 @@ namespace PR_DataAccessLayer
                                     reader.GetString(reader.GetOrdinal("UserName")),
                                      reader.GetString(reader.GetOrdinal("Password")),
                                      reader.GetInt32(reader.GetOrdinal("ClientPersonID")),
+                                     reader.GetByte(reader.GetOrdinal("Role")),
 
                                    reader.GetInt32(reader.GetOrdinal("PersonID")),
                                     reader.GetString(reader.GetOrdinal("FirstName")),
@@ -246,7 +187,7 @@ namespace PR_DataAccessLayer
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                       // cmd.Parameters.AddWithValue("@ClientID", Client.ClientID);
+                  
                         cmd.Parameters.AddWithValue("@UserName", Client.UserName);
                         cmd.Parameters.AddWithValue("@Password", Client.Password);
                         cmd.Parameters.AddWithValue("@PersonID", Client.PersonID);
@@ -293,7 +234,7 @@ namespace PR_DataAccessLayer
                          cmd.Parameters.AddWithValue("@ClientID", Client.ClientID);
                         cmd.Parameters.AddWithValue("@UserName", Client.UserName);
                         cmd.Parameters.AddWithValue("@Password", Client.Password);
-                        //cmd.Parameters.AddWithValue("@PersonID", Client.PersonID);
+ 
                         rowsAffected = cmd.ExecuteNonQuery();
 
                         connection.Close();
@@ -323,9 +264,7 @@ namespace PR_DataAccessLayer
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@ClientID", ClientID);
-                       // cmd.Parameters.AddWithValue("@UserName", Client.UserName);
                         cmd.Parameters.AddWithValue("@Password", Password);
-                        //cmd.Parameters.AddWithValue("@PersonID", Client.PersonID);
                         rowsAffected = cmd.ExecuteNonQuery();
 
                         connection.Close();
@@ -385,7 +324,6 @@ namespace PR_DataAccessLayer
 
         public static bool GetUserByUserNameAndPassword(string UserName , string password)
         {
-            
 
             try
             {
@@ -407,8 +345,6 @@ namespace PR_DataAccessLayer
 
                             return reader.Read();
 
-                           
-
                         }
                       
                         connection.Close();
@@ -420,7 +356,7 @@ namespace PR_DataAccessLayer
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                //return false;
+             
             }
 
             return false;
@@ -457,8 +393,8 @@ namespace PR_DataAccessLayer
                                     reader.GetInt32(reader.GetOrdinal("ClientID")),
                                     reader.GetString(reader.GetOrdinal("UserName")),
                                      reader.GetString(reader.GetOrdinal("Password")),
-                                      
                                      reader.GetInt32(reader.GetOrdinal("PersonID")),
+                                     reader.GetByte(reader.GetOrdinal("Role")),
                                       reader.GetInt32(reader.GetOrdinal("PersonID")),
                                     reader.GetString(reader.GetOrdinal("FirstName")),
                                      reader.GetString(reader.GetOrdinal("LastName")),
@@ -524,7 +460,8 @@ namespace PR_DataAccessLayer
                                     reader.GetInt32(reader.GetOrdinal("ClientID")),
                                     reader.GetString(reader.GetOrdinal("UserName")),
                                      reader.GetString(reader.GetOrdinal("Password")),
-                                      reader.GetInt32(reader.GetOrdinal("PersonID"))
+                                      reader.GetInt32(reader.GetOrdinal("PersonID")),
+                                      reader.GetByte(reader.GetOrdinal("Role"))
                                       
 
                                     );
@@ -549,6 +486,46 @@ namespace PR_DataAccessLayer
             }
 
             return null;
+        }
+
+
+        public static async Task< bool> SetClientRole(AddClientRoleLogDTO Client)
+        {
+            int rowsAffected = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
+                {
+                   
+                    using (SqlCommand cmd = new SqlCommand("SP_SetRoleOfClient", connection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@RecipientRole", Client.RecipientRole);
+                        cmd.Parameters.AddWithValue("@AdminCommiteeId", Client.AdminCommiteeId);
+                        cmd.Parameters.AddWithValue("@RecipientId", Client.RecipientId);
+                        cmd.Parameters.AddWithValue("@Report", Client.Report);
+
+
+                
+                        var idParam = new SqlParameter("@Id", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        cmd.Parameters.Add(idParam);
+                        await connection.OpenAsync();
+
+                        rowsAffected = await cmd.ExecuteNonQueryAsync();
+                        int returnValue = (int)cmd.Parameters["@Id"].Value;
+
+                        connection.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            return rowsAffected > 0;
         }
 
     }
