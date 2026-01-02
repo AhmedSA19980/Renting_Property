@@ -500,11 +500,6 @@ namespace PR_DataAccessLayer
             return PropertyID;
         }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e7c46ccd4fffd72858f63d050fcbb56e7264a5a5
         public static bool DeleteProperty(int PropertyID)
         {
 
