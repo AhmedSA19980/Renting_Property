@@ -1,59 +1,13 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
+using SharedDTOLayer.Payments.PaymentsDTO;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace PR_DataAccessLayer
 {
 
-    public class PaymentsDTO
-    {
-
-        public PaymentsDTO(int id, DateTime startDate, DateTime endDate, decimal pricePerDay, decimal totalAmount, int clientID, int propertyID,
-            int carID, byte status, decimal returnAmount, string note, DateTime returnDate, DateTime paidDate , int BookingID) {
-
-            this.ID = id;
-            this.StartDate = startDate;
-            this.EndDate = endDate;
-            this.PricePerDay = pricePerDay;
-            this.TotalAmount = totalAmount;
-            this.ClientID = clientID;
-            this.PropertyID = propertyID;
-            this.CardID = carID;
-            this.Status = status;
-            this.ReturnAmount = returnAmount;
-            this.Note = note;
-            this.ReturnDate = returnDate;
-            this.PaidDate = paidDate;
-            this.BookingID = BookingID;
-        }
-        public  int ID { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-
-        public decimal PricePerDay { get; set; }
-        public decimal TotalAmount { get; set; }
-
-        public int ClientID { get; set; }
-        public int PropertyID { get; set; }
-        public int CardID { get; set; }
-
-        public byte Status { get; set; }
-        public decimal ReturnAmount { get; set; }
-
-        public string Note { get; set; }
-        public DateTime ReturnDate { get; set; }
-
-
-        public DateTime PaidDate { get; set; }
-
-        public int BookingID { get; set; }
-    }
-
-
+   
     public class clsPaymentsData
     {
 
@@ -86,15 +40,14 @@ namespace PR_DataAccessLayer
 
                                       reader.GetInt32(reader.GetOrdinal("ClientID")),
                                        reader.GetInt32(reader.GetOrdinal("PropertyID")),
-                                       reader.GetInt32(reader.GetOrdinal("CardID")),
+                                //       reader.GetInt32(reader.GetOrdinal("CardID")),
                                            reader.GetByte(reader.GetOrdinal("Status")),
-                                             reader.GetDecimal(reader.GetOrdinal("ReturnAmount")),
-                                              reader.GetString(reader.GetOrdinal("Note")),
-                                               reader.GetDateTime(reader.GetOrdinal("ReturnDate")),
+                                          
                                                reader.GetDateTime(reader.GetOrdinal("PaidDate")),
-                                                reader.GetInt32(reader.GetOrdinal("BookingID"))
-
-
+                                                reader.GetInt32(reader.GetOrdinal("BookingID")),
+                                                reader.GetDecimal(reader.GetOrdinal("ReturnAmount")),
+                                              reader.GetString(reader.GetOrdinal("Note")),
+                                               reader.GetDateTime(reader.GetOrdinal("ReturnDate"))
 
                            ));
                         }
@@ -150,10 +103,10 @@ namespace PR_DataAccessLayer
 
 
 
-        public static List<PaymentsDTO> GetAllClientPaymentsByClientID(int ClientID)
+        public static List<ClientPayments> GetAllClientPaymentsByClientID(int ClientID)
         {
 
-            List<PaymentsDTO> Payments = new List<PaymentsDTO>();
+            List<ClientPayments> Payments = new List<ClientPayments>();
             try
             {
                 using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
@@ -167,31 +120,33 @@ namespace PR_DataAccessLayer
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
+                            
+
                             while (reader.Read())
                             {
-                               Payments.Add(new PaymentsDTO
+                                string Note = reader.IsDBNull(reader.GetOrdinal("Note")) ? "" : reader.GetString(reader.GetOrdinal("Note"));
+
+
+
+                                Payments.Add(new ClientPayments
                                  (
-                              reader.GetInt32(reader.GetOrdinal("ID")),
+                                    reader.GetInt32(reader.GetOrdinal("ID")),
 
-                                reader.GetDateTime(reader.GetOrdinal("StartDate")),
-                                   reader.GetDateTime(reader.GetOrdinal("EndDate")),
+                                    reader.GetDateTime(reader.GetOrdinal("StartDate")),
+                                       reader.GetDateTime(reader.GetOrdinal("EndDate")),
 
-                                  reader.GetDecimal(reader.GetOrdinal("PricePerDay")),
-                                   reader.GetDecimal(reader.GetOrdinal("TotalAmount")),
-
-                                     reader.GetInt32(reader.GetOrdinal("ClientID")),
-                                      reader.GetInt32(reader.GetOrdinal("PropertyID")),
-                                      reader.GetInt32(reader.GetOrdinal("CardID")),
-                                          reader.GetByte(reader.GetOrdinal("Status")),
-                                            reader.GetDecimal(reader.GetOrdinal("ReturnAmount")),
-                                             reader.GetString(reader.GetOrdinal("Note")),
-                                              reader.GetDateTime(reader.GetOrdinal("ReturnDate")),
-                                              reader.GetDateTime(reader.GetOrdinal("PaidDate")),
-                                               reader.GetInt32(reader.GetOrdinal("BookingID"))
-
-
-
-                          ));
+                                      reader.GetDecimal(reader.GetOrdinal("PricePerDay")),
+                                       reader.GetDecimal(reader.GetOrdinal("TotalAmount")),
+                                        reader.GetString(reader.GetOrdinal("PropertyTypeName")),
+                                          reader.GetString(reader.GetOrdinal("Name")),
+                                            reader.GetString(reader.GetOrdinal("PaymentStatus")),
+                                            Note,
+                                                reader.GetDateTime(reader.GetOrdinal("PaidDate")),
+                                                  reader.GetInt32(reader.GetOrdinal("BookingID")),
+                                         reader.GetInt32(reader.GetOrdinal("ClientID"))
+                                     
+                                            
+                                ));
 
                             }
 
@@ -234,23 +189,89 @@ namespace PR_DataAccessLayer
 
                                     reader.GetInt32(reader.GetOrdinal("ID")),
 
-                                 reader.GetDateTime(reader.GetOrdinal("StartDate")),
+                                     reader.GetDateTime(reader.GetOrdinal("StartDate")),
+                                        reader.GetDateTime(reader.GetOrdinal("EndDate")),
+
+                                       reader.GetDecimal(reader.GetOrdinal("PricePerDay")),
+                                        reader.GetDecimal(reader.GetOrdinal("TotalAmount")),
+
+                                          reader.GetInt32(reader.GetOrdinal("ClientID")),
+                                           reader.GetInt32(reader.GetOrdinal("PropertyID")),
+                                               reader.GetByte(reader.GetOrdinal("Status")),
+                                                   reader.GetDateTime(reader.GetOrdinal("PaidDate")),
+                                                     reader.GetInt32(reader.GetOrdinal("BookingID")),
+                                                        reader.GetDecimal(reader.GetOrdinal("ReturnAmount")),
+                                                  reader.GetString(reader.GetOrdinal("Note")),
+                                                   reader.GetDateTime(reader.GetOrdinal("ReturnDate"))
+
+                                );
+
+
+                            }
+
+                            reader.Close();
+                        }
+                        connection.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+
+            }
+
+            return null;
+        }
+
+
+
+        public static PaymentDetailDTO GetPaymentDetailByBookingID(int BookingID)
+        {
+
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("SP_GetPaymentDetailByBookingID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@BookID", BookingID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+
+                                string note = reader.IsDBNull(reader.GetOrdinal("Note")) ? "" : reader.GetString(reader.GetOrdinal("Note"));
+
+
+                                return new PaymentDetailDTO(
+
+                                    reader.GetInt32(reader.GetOrdinal("ID")),
+                                      reader.GetString(reader.GetOrdinal("CountryName")),
+                                 reader.GetDateTime(reader.GetOrdinal("startDate")),
                                     reader.GetDateTime(reader.GetOrdinal("EndDate")),
+                                     reader.GetDecimal(reader.GetOrdinal("OriginalPrice")),
+                                      reader.GetString(reader.GetOrdinal("DiscountPer")),
 
                                    reader.GetDecimal(reader.GetOrdinal("PricePerDay")),
                                     reader.GetDecimal(reader.GetOrdinal("TotalAmount")),
+                                      reader.GetString(reader.GetOrdinal("PropertyTypeName")),
+                                       reader.GetString(reader.GetOrdinal("Name")),
+                                           reader.GetString(reader.GetOrdinal("PaymentStatus")),
 
-                                      reader.GetInt32(reader.GetOrdinal("ClientID")),
-                                       reader.GetInt32(reader.GetOrdinal("PropertyID")),
-                                       reader.GetInt32(reader.GetOrdinal("CardID")),
-                                           reader.GetByte(reader.GetOrdinal("Status")),
-                                             reader.GetDecimal(reader.GetOrdinal("ReturnAmount")),
-                                              reader.GetString(reader.GetOrdinal("Note")),
-                                               reader.GetDateTime(reader.GetOrdinal("ReturnDate")),
+                                             note,
+
                                                reader.GetDateTime(reader.GetOrdinal("PaidDate")),
-                                                 reader.GetInt32(reader.GetOrdinal("BookingID"))
+                                                reader.GetInt32(reader.GetOrdinal("BookingID")),
+                                                 reader.GetInt32(reader.GetOrdinal("BookedByClientId"))
+                                       
 
-                                    );
+                                );
 
 
                             }
@@ -284,18 +305,18 @@ namespace PR_DataAccessLayer
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@ID", Payments.ID);
+                       
                         cmd.Parameters.AddWithValue("@StartDate", Payments.StartDate);
                         cmd.Parameters.AddWithValue("@EndDate", Payments.EndDate);
                         cmd.Parameters.AddWithValue("@PricePerDay", Payments.PricePerDay);
 
 
-                        cmd.Parameters.AddWithValue("@TotalAmount", Payments.TotalAmount);
+                     
                         cmd.Parameters.AddWithValue("@ClientID", Payments.ClientID);
                         cmd.Parameters.AddWithValue("@PropertyID", Payments.PropertyID);
-                        cmd.Parameters.AddWithValue("@CardID", (object)Payments.CardID ?? DBNull.Value);
-                      //  cmd.Parameters.AddWithValue("@Status", Payments.Status);
-
+                      
+                
+                        cmd.Parameters.AddWithValue("@BookingID", Payments.BookingID);
 
 
                         SqlParameter outputIdParam = new SqlParameter("@ID", SqlDbType.Int)
