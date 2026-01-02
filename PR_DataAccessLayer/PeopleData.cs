@@ -2,8 +2,6 @@
 using Microsoft.Data.SqlClient;
 using SharedDTOLayer.People.PeopleDTO;
 
-<<<<<<< HEAD
-
 
 namespace PR_DataAccessLayer
 {
