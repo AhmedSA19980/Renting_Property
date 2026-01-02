@@ -7,12 +7,6 @@ using System.Data;
 namespace PR_DataAccessLayer
 {
 
-<<<<<<< HEAD
-=======
-
-
-  
->>>>>>> e7c46ccd4fffd72858f63d050fcbb56e7264a5a5
     public class clsDiscountData
     {
 
