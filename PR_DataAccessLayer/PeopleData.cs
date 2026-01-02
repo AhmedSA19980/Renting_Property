@@ -2,8 +2,11 @@
 using Microsoft.Data.SqlClient;
 using SharedDTOLayer.People.PeopleDTO;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e7c46ccd4fffd72858f63d050fcbb56e7264a5a5
 
 namespace PR_DataAccessLayer
 {
@@ -389,7 +392,10 @@ namespace PR_DataAccessLayer
                 Console.WriteLine($"Error: {ex.Message}");
             }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e7c46ccd4fffd72858f63d050fcbb56e7264a5a5
             return clientID;
         }
         public static bool IsUserBlocked(int personId)
