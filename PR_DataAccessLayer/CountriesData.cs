@@ -1,33 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
-using PR_DataAccessLayer;
+using SharedDTOLayer.Countries.CountriesDTO;
 
 
 namespace PR_DataAccessLayer
 {
 
-    public class CountryDTO
-    {
-        public CountryDTO(int CountryID, string CountryName )
-        {
-            this.CountryID = CountryID;
-            this.CountryName = CountryName;
-      
-
-        }
-
-        public int CountryID { get; set; }  
-        public string CountryName { get; set; }
-     
-
-
-    }
+  
     public  class clsCountriesData
     {
 
@@ -112,7 +92,7 @@ namespace PR_DataAccessLayer
                             if (reader.Read())
                             {
 
-                                // The record was found
+                            
                                 isFound = true;
 
                                 CountryName = (string)reader["CountryName"];
@@ -120,7 +100,7 @@ namespace PR_DataAccessLayer
                             }
                             else
                             {
-                                // The record was not found
+                            
                                 isFound = false;
                             }
 
@@ -163,7 +143,7 @@ namespace PR_DataAccessLayer
                             if (reader.Read())
                             {
 
-                                // The record was found
+                    
                                 isFound = true;
 
                                 ID = (int)reader["CountryID"];
@@ -171,7 +151,7 @@ namespace PR_DataAccessLayer
                             }
                             else
                             {
-                                // The record was not found
+                             
                                 isFound = false;
                             }
 

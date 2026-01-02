@@ -1,68 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Data;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
-using PR_DataAccessLayer;
+using SharedDTOLayer.Images;
+
+
+
+
+
+
 
 namespace PR_DataAccessLayer
 {
 
 
-    public class ImagesDTO
-    {
-        public ImagesDTO() {
-
-            this.ContainerID = -1;
-            this.ImageOnePath = "";
-            this.ImageTwoPath = "";
-            this.ImageThreePath = "";
-            this.ImageFourPath = "";
-            this.ImageFivePath = "";
-            this.ImageSixPath = "";
-            this.ImageSevenPath = "";
-            this.ImageEightPath = "";
-            this.ImageNinePath ="";
-
-        }
-        public ImagesDTO(int ContainerID,  string imageOnePath,  string imageTwoPath,string imageThreePath, 
-            string imageFourPath,  string imageFivePath, string imageSixPath,  string imageSevenPath,
-           string imageEightPath, string imageNinePath) { 
-        
-            this.ContainerID = ContainerID; 
-            this.ImageOnePath = imageOnePath;
-            this.ImageTwoPath = imageTwoPath;
-            this.ImageThreePath = imageThreePath;
-            this.ImageFourPath = imageFourPath;
-            this.ImageFivePath = imageFivePath;
-            this.ImageSixPath = imageSixPath;
-            this.ImageSevenPath = imageSevenPath;
-            this.ImageEightPath = imageEightPath;
-            this.ImageNinePath = imageNinePath;
-
-            
-        }
-
-
-        public int ContainerID { get; set; }    
-        public string ImageOnePath { get; set; }
-        public string ImageTwoPath { get; set; }
-        public string ImageThreePath { get; set; }
-        public string ImageFourPath { get; set; }
-        public string ImageFivePath { get; set; }
-        public string ImageSixPath { get; set; }
-        public string ImageSevenPath { get; set; }
-        public string ImageEightPath { get; set;}   
-        public string ImageNinePath { get;set;} 
-
-
-
-    }
+  
     public  class clsImagesData
     {
 
@@ -78,7 +29,7 @@ namespace PR_DataAccessLayer
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@ContainerID", ContainerID);
-                        //command.Parameters.AddWithValue("@ContainerID", (object)ContainerID ?? DBNull.Value);
+                    
 
                         using (var reader = command.ExecuteReader())
                         {
@@ -205,8 +156,6 @@ namespace PR_DataAccessLayer
 
 
 
-
-
                         SqlParameter outputIdParam = new SqlParameter("@ContainerID", SqlDbType.Int)
                         {
                             Direction = ParameterDirection.Output
@@ -219,14 +168,6 @@ namespace PR_DataAccessLayer
 
                       
                         object Result = cmd.ExecuteScalar();
-
-                        //connection.Open();
-                        //object Result = cmd.ExecuteScalar();
-                        //if (Result != null && int.TryParse(Result.ToString(), out int InsertedPropertyID))
-                        //{
-                        //    ContainerID = InsertedPropertyID;
-
-                        //}
 
                         ContainerID = (int)cmd.Parameters["@ContainerID"].Value;
 
@@ -339,14 +280,39 @@ namespace PR_DataAccessLayer
 
             }
 
-        
-
-         
-
-
-
             return (RowAffected > 0);
 
         }
+
+        public static bool DeleteContainerImages(int ContainerId)
+        {
+            int rowsAffected = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand("SP_RemoveContainerOnlyWhenPropertyFailedToConstructed", connection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@containerId", ContainerId);
+
+
+                        rowsAffected = cmd.ExecuteNonQuery();
+
+                        connection.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            return rowsAffected > 0;
+        }
+
     }
 }
