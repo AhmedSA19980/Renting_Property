@@ -1,10 +1,9 @@
 ﻿using PR_DataAccessLayer;
-using System;
-using System.Collections.Generic;
+using SharedDTOLayer.Offer.DiscountDTO;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
+
 
 namespace PR_BusinessLayer
 {
@@ -86,7 +85,9 @@ namespace PR_BusinessLayer
         public static decimal ImplementDiscount(int PropertyID)
         {
             int FindValidDiscount = clsProperty.FindActiveDiscount(PropertyID);
-            decimal DiscuntPrecentage = clsDiscount.Find(FindValidDiscount).DiscountPercentage;
+            var DiscuntPrecentage =(decimal) clsDiscount.Find(FindValidDiscount).DiscountPercentage; // error
+           
+
             clsProperty Property = clsProperty.Find(PropertyID);
             decimal PropertyPrice = Property.Price;
 
@@ -126,7 +127,7 @@ namespace PR_BusinessLayer
             return null;
         }
 
-        // You can add optional constructors for Update scenario if needed
+        // possibility to  add optional constructors for Update scenario if needed
         public static  DataTable GetPropertysDiscounts(int propertyID)
         {
             return clsDiscountData.GetPropertysDiscounts(propertyID);   

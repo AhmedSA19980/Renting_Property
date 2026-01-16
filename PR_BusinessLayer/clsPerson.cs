@@ -1,9 +1,5 @@
 ﻿using PR_DataAccessLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SharedDTOLayer.People.PeopleDTO;
 
 namespace PR_BusinessLayer
 {

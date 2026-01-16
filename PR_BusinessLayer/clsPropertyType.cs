@@ -1,4 +1,5 @@
 ﻿using PR_DataAccessLayer;
+using SharedDTOLayer.PropertyTypes.PropertyTypesDTO;
 using System.Data;
 
 
@@ -70,8 +71,6 @@ namespace PR_BusinessLayer
         
         public static clsPropertyType Find(string PropertyTypeName)
         {
-
-        
 
             PropertyTypeDTO PDTO = clsPropertyTypeData.GetPropertyTypeByPropertyName(PropertyTypeName);
 
