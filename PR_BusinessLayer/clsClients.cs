@@ -109,7 +109,7 @@ namespace PR_BusinessLayer
             }
         }
 
-        public clsClients(FullClientDTO CDTO, enMode cMode = enMode.AddNew) : base(new PersonDTO( // Call base class constructor with PersonDTO data
+        public clsClients(FullClientDTO CDTO, enMode cMode = enMode.AddNew) : base(new PersonDTO( 
             CDTO.PersonID,
             CDTO.FirstName,
             CDTO.LastName,
@@ -147,7 +147,6 @@ namespace PR_BusinessLayer
 
         private bool _AddNewClient()
         {
-            //call DataAccess Layer 
             this.PersonID = clsPerson.GetPersonID;
             this.ClientID = clsClientsData.AddNewClient(CDTO);
           
@@ -157,7 +156,7 @@ namespace PR_BusinessLayer
 
         private bool _UpdateClient()
         {
-            //call DataAccess Layer 
+           
 
             return clsClientsData.UpdateClient(CDTO);
 

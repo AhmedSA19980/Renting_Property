@@ -65,7 +65,7 @@ namespace PR_BusinessLayer
 
         private bool _AddNewImages()
         {
-            //call DataAccess Layer 
+           
 
             this.ContainerID = clsImagesData.AddNewImages(IDTO);
 
@@ -74,7 +74,7 @@ namespace PR_BusinessLayer
 
         private bool _UpdateImages()
         {
-            //call DataAccess Layer 
+           
 
             return clsImagesData.UpdateImages(IDTO);
 

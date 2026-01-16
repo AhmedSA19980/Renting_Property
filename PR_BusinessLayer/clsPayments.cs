@@ -132,8 +132,7 @@ namespace PR_BusinessLayer
 
         private bool _UpdatePayment()
         {
-            //call DataAccess Layer 
-
+            
             return clsPaymentsData.AppropriateRefund(PDTO);
 
         }

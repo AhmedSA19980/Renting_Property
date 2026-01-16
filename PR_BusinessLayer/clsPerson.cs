@@ -75,7 +75,6 @@ namespace PR_BusinessLayer
 
         private bool _AddNewPerson()
         {
-            //call DataAccess Layer 
 
             this.PersonID = clsPeopleData.AddNewPerson(PDTO);
             GetPersonID = this.PersonID;
@@ -85,7 +84,7 @@ namespace PR_BusinessLayer
 
         private bool _UpdatePerson()
         {
-            //call DataAccess Layer 
+           
 
             return clsPeopleData.UpdateUser(PDTO);
 

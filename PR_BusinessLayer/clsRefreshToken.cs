@@ -17,7 +17,7 @@ namespace PR_BusinessLayer
     public class clsRefreshToken
     {
 
-        //private readonly RefreshTokenDTO _refreshTokenDataAccess;
+        
         private readonly IConfiguration _configuration;
 
         public enum enMode { AddNew = 0, Update = 1 };

@@ -127,7 +127,7 @@ namespace PR_BusinessLayer
             return null;
         }
 
-        // possibility to  add optional constructors for Update scenario if needed
+      
         public static  DataTable GetPropertysDiscounts(int propertyID)
         {
             return clsDiscountData.GetPropertysDiscounts(propertyID);   

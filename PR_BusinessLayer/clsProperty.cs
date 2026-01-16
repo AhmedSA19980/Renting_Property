@@ -127,7 +127,7 @@ namespace PR_BusinessLayer
 
         private bool _AddNewProperty()
         {
-            //call DataAccess Layer 
+           
 
             this.PropertyID = clsPropertyData.AddProperty(PCDTO);
 
@@ -137,7 +137,7 @@ namespace PR_BusinessLayer
 
         private bool _UpdateProperty()
         {
-            //call DataAccess Layer 
+           
 
             return clsPropertyData.UpdateProperty(PDTO);
 
