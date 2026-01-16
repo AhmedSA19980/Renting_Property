@@ -9,7 +9,7 @@ namespace PR_BusinessLayer.StripePayment
         public static string ApiKey()
         {
             DotNetEnv.Env.Load();
-            return StripeConfiguration.ApiKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
+            return StripeConfiguration.ApiKey = Environment.GetEnvironmentVariable("Stripe_key");
         }
 
     }
