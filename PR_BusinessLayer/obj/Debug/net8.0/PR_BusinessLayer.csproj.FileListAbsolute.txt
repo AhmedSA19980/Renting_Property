@@ -2,7 +2,9 @@ D:\DestopsApplications\PR_BusinessLayer\bin\Debug\net8.0\PR_BusinessLayer.deps.j
 D:\DestopsApplications\PR_BusinessLayer\bin\Debug\net8.0\PR_BusinessLayer.dll
 D:\DestopsApplications\PR_BusinessLayer\bin\Debug\net8.0\PR_BusinessLayer.pdb
 D:\DestopsApplications\PR_BusinessLayer\bin\Debug\net8.0\PR_DataAccessLayer.dll
+D:\DestopsApplications\PR_BusinessLayer\bin\Debug\net8.0\SharedDTOLayer.dll
 D:\DestopsApplications\PR_BusinessLayer\bin\Debug\net8.0\PR_DataAccessLayer.pdb
+D:\DestopsApplications\PR_BusinessLayer\bin\Debug\net8.0\SharedDTOLayer.pdb
 D:\DestopsApplications\PR_BusinessLayer\obj\Debug\net8.0\PR_BusinessLayer.csproj.AssemblyReference.cache
 D:\DestopsApplications\PR_BusinessLayer\obj\Debug\net8.0\PR_BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
 D:\DestopsApplications\PR_BusinessLayer\obj\Debug\net8.0\PR_BusinessLayer.AssemblyInfoInputs.cache

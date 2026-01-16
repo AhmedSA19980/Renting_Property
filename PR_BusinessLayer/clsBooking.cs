@@ -1,10 +1,6 @@
 ﻿using PR_DataAccessLayer;
-using System;
-using System.Collections.Generic;
+using SharedDTOLayer.Books.BooksDTO;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace PR_BusinessLayer
@@ -55,7 +51,7 @@ namespace PR_BusinessLayer
                 );
             }
         }
-        public clsBooking(BookingDTO BDTO, enMode mode = enMode.AddNew)
+        public clsBooking(BookingUpsertDTO BDTO, enMode mode = enMode.AddNew)
         {
             this.BookID = BDTO.BookID;
             this.PropertyId = BDTO.PropertyId;
@@ -63,18 +59,16 @@ namespace PR_BusinessLayer
             this.Price = BDTO.Price;
             this.ExpiredDate = BDTO.ExpiredDate;
             this.BeginDate = BDTO.BeginDate;
-            this.IsBooked = BDTO.IsBooked;
+
+            BookingDTO book = BDTO as BookingDTO;
+            if (book != null)
+            {
+                this.IsBooked = book.IsBooked;
+            }
             _Mode = mode;
         }
 
-        public clsBooking(BookingUpdateDTO BDTO)
-        {
-            this.BookID = BDTO.BookID;      
-            this.ExpiredDate = BDTO.ExpiredDate;
-            this.BeginDate = BDTO.BeginDate;
-     
-            _Mode = enMode.Update;
-        }
+        
 
         private bool _AddNewBooking()
         {
@@ -84,7 +78,7 @@ namespace PR_BusinessLayer
 
         private bool _UpdateBooking()
         {
-            return clsBookData.UpdateReservation(BUDTO);
+            return clsBookData.UpdateReservation(BDTO);
         }
 
         public static int DeleteBooking(int bookID)
@@ -106,7 +100,7 @@ namespace PR_BusinessLayer
         }
 
 
-        public static ReservationDTO CheckForActiveReservationDate(int PropertyID, DateTime stDate , DateTime exDate)
+        public static CheckForActiveReservationDTO CheckForActiveReservationDate(int PropertyID, DateTime stDate , DateTime exDate)
         {
             return clsBookData.CheckForActiveReservationDate(PropertyID, stDate, exDate);
         }

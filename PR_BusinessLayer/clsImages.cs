@@ -1,9 +1,5 @@
 ﻿using PR_DataAccessLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SharedDTOLayer.Images;
 
 
 namespace PR_BusinessLayer
@@ -20,7 +16,6 @@ namespace PR_BusinessLayer
 
 
 
-        // images 
         public string ImageOnePath { get; set; }
         public string ImageTwoPath { get; set; }
         public string ImageThreePath { get; set; }
@@ -70,7 +65,7 @@ namespace PR_BusinessLayer
 
         private bool _AddNewImages()
         {
-            //call DataAccess Layer 
+           
 
             this.ContainerID = clsImagesData.AddNewImages(IDTO);
 
@@ -79,7 +74,7 @@ namespace PR_BusinessLayer
 
         private bool _UpdateImages()
         {
-            //call DataAccess Layer 
+           
 
             return clsImagesData.UpdateImages(IDTO);
 
@@ -101,7 +96,10 @@ namespace PR_BusinessLayer
 
         }
 
-
+        public static int DeleteContaninerImagesOnlyWhenPropertyFailed(int containerId)
+        {
+            return (clsImages.Find(containerId) != null) ? clsImagesData.DeleteContainerImages(containerId) ? 1 : -1 : -1;
+        }
 
         public bool Save()
         {

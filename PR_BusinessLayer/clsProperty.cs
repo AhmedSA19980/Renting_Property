@@ -1,6 +1,8 @@
 ﻿
 using PR_DataAccessLayer;
-using System.Security.Cryptography;
+using SharedDTOLayer.Offer.DiscountDTO;
+using SharedDTOLayer.Properties_.PropertiesDTO;
+
 
 namespace PR_BusinessLayer
 {
@@ -15,7 +17,7 @@ namespace PR_BusinessLayer
         public int CountryID { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
-        public string PlaceDescription { get; set; }
+        public string? PlaceDescription { get; set; }
         public string Name { get; set; }    
         public int ContainerID { get; set; }
         public byte NumberOfBedrooms { get; set; }
@@ -30,8 +32,34 @@ namespace PR_BusinessLayer
 
         public clsDiscount DiscountInfo { get; set; }
         public int DiscountID { get; set; }
-      
 
+        public int ClientID { get; set; }
+
+
+        public PropertyAndClientDTO PCDTO
+        {
+            get
+            {
+                return (new PropertyAndClientDTO(
+                this.ClientID,
+                    this.PropertyID,
+                this.CountryID,
+                this.City,
+                this.Address,
+                this?.PlaceDescription,
+                this.ContainerID,
+
+
+                this.NumberOfBedrooms,
+                this.NumberOfBathrooms,
+                (byte)this.PropertyTypeID,
+                 this.Price,
+                this.Name
+              
+
+               ));
+            }
+        }
 
         public PropertyDTO PDTO
         {
@@ -42,7 +70,7 @@ namespace PR_BusinessLayer
                 this.CountryID,
                 this.City,
                 this.Address,
-                this.PlaceDescription,
+                this?.PlaceDescription,
                 this.ContainerID,
                
                
@@ -56,8 +84,10 @@ namespace PR_BusinessLayer
             }
         }
         
+
         public clsProperty(PropertyDTO PDTO, enMode cMode = enMode.AddNew)
         {
+            
             this.PropertyID = PDTO.PropertyID;
             this.CountryID = PDTO.CountryID;
             this.City = PDTO.City;
@@ -65,13 +95,19 @@ namespace PR_BusinessLayer
             this.PlaceDescription = PDTO.PlaceDescription;
             this.ContainerID = PDTO.ContainerID;
             this.NumberOfBedrooms = PDTO.NumberOfBedrooms;
-            this.NumberOfBathrooms = PDTO.NumberOfBedrooms;
+            this.NumberOfBathrooms = PDTO.NumberOfBathrooms;
             this.PropertyTypeID = (sbyte)PDTO.PropertyTypeID;
             this.Price = PDTO.Price;
             this.Name = PDTO.Name;
             this.Container = clsImages.Find(ContainerID);
             this.DiscountID = clsProperty.FindActiveDiscount(PropertyID);
             this.DiscountInfo = clsDiscount.Find(this.DiscountID);
+
+            PropertyAndClientDTO client = PDTO as PropertyAndClientDTO;
+            if (client != null) { 
+            
+                this.ClientID = client.ClientID;
+            }
             _Mode = cMode;
         }
 
@@ -91,9 +127,9 @@ namespace PR_BusinessLayer
 
         private bool _AddNewProperty()
         {
-            //call DataAccess Layer 
+           
 
-            this.PropertyID = clsPropertyData.AddProperty(PDTO);
+            this.PropertyID = clsPropertyData.AddProperty(PCDTO);
 
             return (this.PropertyID != -1);
         }
@@ -101,7 +137,7 @@ namespace PR_BusinessLayer
 
         private bool _UpdateProperty()
         {
-            //call DataAccess Layer 
+           
 
             return clsPropertyData.UpdateProperty(PDTO);
 
@@ -122,26 +158,12 @@ namespace PR_BusinessLayer
             return clsPropertyData.GetAllProperty();
         }
 
+        public static List<PropertyDTO> GetAllActiveProperties()
+        {
 
+            return clsPropertyData.GetAllActiveProperty();
+        }
 
-
-        //public static clsproperty Find(string PropertyName)
-        //{
-
-        //    int CountryID = -1, ImagesContainerID = -1; string City = "", Address = "", PlaceDescription = "";
-        //    float Price = 0;
-
-
-
-
-
-        //    if (clsPropertyData.FindPropertyByPropertyID(PropertyID, ref CountryID, ref City, ref Address, ref PlaceDescription, ref ImagesContainerID, ref Price))
-
-        //        return new clsproperty(PropertyID, CountryID, City, Address, PlaceDescription, ImagesContainerID, Price);
-        //    else
-        //        return null;
-
-        //}
 
 
         public static int FindActiveDiscount(int PropertyID)
@@ -150,7 +172,7 @@ namespace PR_BusinessLayer
 
         }
 
-        // public 
+       
 
         public static int FindActiveDiscountByID(int PropertyID)
         {
@@ -163,6 +185,13 @@ namespace PR_BusinessLayer
 
 
         }
+        public static List< PropertyStatusDTO> GetAllPropertiesByClientID(int ClientID)
+        {
+          List<PropertyStatusDTO>  Properties =clsPropertyData.GetAllPropertiesByClientId(ClientID);
+            return Properties;
+
+        }
+
 
         public static clsDiscount PropertyPricePrecentOFF(int PropertyID, decimal PrecentOff, string StartDate, string EndDate)
         {
@@ -201,7 +230,7 @@ namespace PR_BusinessLayer
         public bool Save()
         {
 
-
+            
             switch (_Mode)
             {
                 case enMode.AddNew:

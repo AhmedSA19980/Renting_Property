@@ -1,9 +1,5 @@
 ﻿using PR_DataAccessLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SharedDTOLayer.People.PeopleDTO;
 
 namespace PR_BusinessLayer
 {
@@ -79,7 +75,6 @@ namespace PR_BusinessLayer
 
         private bool _AddNewPerson()
         {
-            //call DataAccess Layer 
 
             this.PersonID = clsPeopleData.AddNewPerson(PDTO);
             GetPersonID = this.PersonID;
@@ -89,7 +84,7 @@ namespace PR_BusinessLayer
 
         private bool _UpdatePerson()
         {
-            //call DataAccess Layer 
+           
 
             return clsPeopleData.UpdateUser(PDTO);
 

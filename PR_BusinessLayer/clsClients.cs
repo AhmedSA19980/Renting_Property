@@ -1,10 +1,9 @@
 ﻿using PR_DataAccessLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+using SharedDTOLayer.clients.clientsDTO;
+using SharedDTOLayer.People.PeopleDTO;
+
+
+
 
 namespace PR_BusinessLayer
 {
@@ -18,9 +17,12 @@ namespace PR_BusinessLayer
         public string UserName { get; set; }
         public string Password { get; set; }
         public int PersonID { get; set; }
+       
 
-
+        public enum enRole {Admin = 1 , Provider = 2 , Cutomer = 3 ,  AdminAndProvider = 4}
+        public enRole Role { get; set; }
         public int getPersonID { get { return clsPerson.Find(PersonID).PersonID; } }
+
 
         public ClientDTO CDTO
         {
@@ -30,8 +32,23 @@ namespace PR_BusinessLayer
                this.ClientID,
                this.UserName,
                this.Password,
-               this.PersonID
+               this.PersonID,
+                (byte)this.Role
             
+               ));
+            }
+        }
+
+        public GetClientDTO GCDTO
+        {
+            get
+            {
+                return (new GetClientDTO(
+               this.ClientID,
+               this.UserName,
+               this.PersonID,
+               (byte)this.Role
+
                ));
             }
         }
@@ -46,6 +63,7 @@ namespace PR_BusinessLayer
                this.UserName,
                this.Password,
                this.PersonID,
+               (byte) this.Role,
 
                 this.PersonID,
                 this.FirstName ,
@@ -63,9 +81,35 @@ namespace PR_BusinessLayer
             }
         }
 
-      
 
-        public clsClients(FullClientDTO CDTO, enMode cMode = enMode.AddNew) : base(new PersonDTO( // Call base class constructor with PersonDTO data
+        public UpdateClientDTO UCDTO
+        {
+            get
+            {
+                return (new UpdateClientDTO(
+                 this.ClientID,
+            
+               this.Password,
+               this.PersonID,
+              
+
+                this.PersonID,
+                this.FirstName,
+                this.LastName,
+                this.DateOfBirth,
+                this.Gender,
+                this.Address,
+                this.NationalityCountryID,
+                this.Phone,
+                this.Email,
+                this.PersonalImage
+
+
+               ));
+            }
+        }
+
+        public clsClients(FullClientDTO CDTO, enMode cMode = enMode.AddNew) : base(new PersonDTO( 
             CDTO.PersonID,
             CDTO.FirstName,
             CDTO.LastName,
@@ -94,6 +138,7 @@ namespace PR_BusinessLayer
             this.Password = CDTO.Password;
         
             this.PersonID = CDTO.PersonID;
+            this.Role =(enRole) CDTO.Role;
 
             _Mode = cMode;
         }
@@ -102,7 +147,6 @@ namespace PR_BusinessLayer
 
         private bool _AddNewClient()
         {
-            //call DataAccess Layer 
             this.PersonID = clsPerson.GetPersonID;
             this.ClientID = clsClientsData.AddNewClient(CDTO);
           
@@ -112,7 +156,7 @@ namespace PR_BusinessLayer
 
         private bool _UpdateClient()
         {
-            //call DataAccess Layer 
+           
 
             return clsClientsData.UpdateClient(CDTO);
 
@@ -150,12 +194,16 @@ namespace PR_BusinessLayer
             
         }
 
+       
+
         public static bool FindUserInfoNameAndPassword(string UserName, string Password)
         {
             ClientDTO CDTO = clsClientsData.GetUserInfoByUserNameAndPassword_2(UserName, Password);
             return CDTO != null ?  true : false;
         }
 
+
+       
 
         public static clsClients Find(int ClientID)
         {
@@ -179,6 +227,21 @@ namespace PR_BusinessLayer
             return clsClientsData.ChangePassword(clientID, Password);
         }
 
+        public static Task<bool> SetRole(AddClientRoleLogDTO CLDTO)
+        {
+           
+            return clsClientsData.SetClientRole(CLDTO);
+        }
+        public static int GetClientIdByPersonEmail(string email)
+        {
+            return clsPeopleData.GetClientIdByEmail(email); 
+        }
+
+
+        public static int GetClientIdByPersonID(int PersonId)
+        {
+            return clsPeopleData.GetClientIdByPersonID(PersonId);
+        }
 
         public bool Save()
         {
