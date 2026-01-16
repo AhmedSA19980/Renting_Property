@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SharedDTOLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b03ff61eafad70fa010b14379a19bf2b45a90eb8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b81ea17a0ee2fb508b7202ed9598c55ce28e3ed2")]
 [assembly: System.Reflection.AssemblyProductAttribute("SharedDTOLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SharedDTOLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
