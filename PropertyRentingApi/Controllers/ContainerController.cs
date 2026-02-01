@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Features;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PR_DataAccessLayer;
+using SharedDTOLayer.Images;
 using PropertyRentingApi.Utilities;
+using System.Security.Claims;
+using UtillsLayer;
+
+
 
 namespace PropertyRentingApi.Controllers
 {
@@ -33,21 +36,14 @@ namespace PropertyRentingApi.Controllers
             }
 
             var image = System.IO.File.OpenRead(filePath);
-            var mimeType = clsUitil.GetMimeType(filePath);
+            var mimeType = clsMemeType.GetMimeType(filePath);
 
 
             return File(image, mimeType);
         }
 
 
-
-
-
-
-
-
-
-
+        [Authorize]
         [HttpPost("AddContainer", Name = "AddImages")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -56,28 +52,25 @@ namespace PropertyRentingApi.Controllers
             IFormFile ImageSeven = null, IFormFile ImageEight = null, IFormFile ImageNine = null)
         {
             ImagesDTO NewImages = new ImagesDTO();
-            //we validate the data here
+ 
+            bool imgFour = clsMedia.IsFileIsEmpty(ImageFour);
+            bool imgFive = clsMedia.IsFileIsEmpty(ImageFive);
+            bool imgSix = clsMedia.IsFileIsEmpty(ImageSix);
+            bool imgSeven = clsMedia.IsFileIsEmpty(ImageSeven);
+            bool imgEight = clsMedia.IsFileIsEmpty(ImageEight);
+            bool imgNine = clsMedia.IsFileIsEmpty(ImageNine);
+
+            NewImages.ImageOnePath = await clsMedia.UploadPropertyImages(ImageOne, _configuration);
+            NewImages.ImageTwoPath = await clsMedia.UploadPropertyImages(ImageTwo, _configuration);
+            NewImages.ImageThreePath = await clsMedia.UploadPropertyImages(ImageThree, _configuration);
+            NewImages.ImageFourPath = await clsMedia.UploadPropertyImages(ImageFour, _configuration, imgFour);
+            NewImages.ImageFivePath = await clsMedia.UploadPropertyImages(ImageFive, _configuration, imgFive);
+            NewImages.ImageSixPath = await clsMedia.UploadPropertyImages(ImageSix, _configuration, imgSix);
+            NewImages.ImageSevenPath = await clsMedia.UploadPropertyImages(ImageSeven, _configuration, imgSeven);
+            NewImages.ImageNinePath = await clsMedia.UploadPropertyImages(ImageEight, _configuration, imgEight);
+            NewImages.ImageEightPath = await clsMedia.UploadPropertyImages(ImageNine, _configuration, imgNine);
 
 
-            // check content type if required
-            bool imgFour = clsUitil.IsFileIsEmpty(ImageFour);
-            bool imgFive = clsUitil.IsFileIsEmpty(ImageFive);
-            bool imgSix = clsUitil.IsFileIsEmpty(ImageSix);
-            bool imgSeven = clsUitil.IsFileIsEmpty(ImageSeven);
-            bool imgEight = clsUitil.IsFileIsEmpty(ImageEight);
-            bool imgNine = clsUitil.IsFileIsEmpty(ImageNine);
-
-            NewImages.ImageOnePath = await clsUitil.UploadPropertyImages(ImageOne, _configuration);
-            NewImages.ImageTwoPath = await clsUitil.UploadPropertyImages(ImageTwo, _configuration);
-            NewImages.ImageThreePath = await clsUitil.UploadPropertyImages(ImageThree, _configuration);
-            NewImages.ImageFourPath = await clsUitil.UploadPropertyImages(ImageFour, _configuration, imgFour);
-            NewImages.ImageFivePath = await clsUitil.UploadPropertyImages(ImageFive, _configuration, imgFive);
-            NewImages.ImageSixPath = await clsUitil.UploadPropertyImages(ImageSix, _configuration, imgSix);
-            NewImages.ImageSevenPath = await clsUitil.UploadPropertyImages(ImageSeven, _configuration, imgSeven);
-            NewImages.ImageNinePath = await clsUitil.UploadPropertyImages(ImageEight, _configuration, imgEight);
-            NewImages.ImageEightPath = await clsUitil.UploadPropertyImages(ImageNine, _configuration, imgNine);
-
-            //newStudent.Id = StudentDataSimulation.StudentsList.Count > 0 ? StudentDataSimulation.StudentsList.Max(s => s.Id) + 1 : 1;
 
             PR_BusinessLayer.clsImages images = new PR_BusinessLayer.clsImages(new ImagesDTO(NewImages.ContainerID, NewImages.ImageOnePath, NewImages.ImageTwoPath, NewImages.ImageThreePath
                 , NewImages.ImageFourPath, NewImages.ImageFivePath, NewImages.ImageSixPath, NewImages.ImageSevenPath, NewImages.ImageEightPath, NewImages.ImageNinePath));
@@ -94,8 +87,7 @@ namespace PropertyRentingApi.Controllers
 
             NewImages.ContainerID = images.ContainerID;
 
-            //we return the DTO only not the full student object
-            //we dont return Ok here,we return createdAtRoute: this will be status code 201 created.
+           
             return CreatedAtRoute("GetPropertyById", new { id = NewImages.ContainerID }, NewImages);
 
 
@@ -116,11 +108,10 @@ namespace PropertyRentingApi.Controllers
 
 
             ImagesDTO imagesDTO = new ImagesDTO();
-            //we validate the data here
 
 
             PR_BusinessLayer.clsImages Images = PR_BusinessLayer.clsImages.Find(containerid);
-            //newStudent.Id = StudentDataSimulation.StudentsList.Count > 0 ? StudentDataSimulation.StudentsList.Max(s => s.Id) + 1 : 1;
+
             bool ValidationProblem = true;
             if (Images == null)
             {
@@ -130,53 +121,51 @@ namespace PropertyRentingApi.Controllers
 
 
 
-            bool imgOne = clsUitil.IsFileIsEmpty(ImageOne);
+            bool imgOne = clsMedia.IsFileIsEmpty(ImageOne);
           
-            bool imgTwo = clsUitil.IsFileIsEmpty(ImageTwo);
-            bool imgThree = clsUitil.IsFileIsEmpty(ImageThree);
+            bool imgTwo = clsMedia.IsFileIsEmpty(ImageTwo);
+            bool imgThree = clsMedia.IsFileIsEmpty(ImageThree);
 
-            bool imgFour = clsUitil.IsFileIsEmpty(ImageFour);
-            bool imgFive = clsUitil.IsFileIsEmpty(ImageFive);
-            bool imgSix = clsUitil.IsFileIsEmpty(ImageSix);
-            bool imgSeven = clsUitil.IsFileIsEmpty(ImageSeven);
-            bool imgEight = clsUitil.IsFileIsEmpty(ImageEight);
-            bool imgNine = clsUitil.IsFileIsEmpty(ImageNine);
-
-            
-          
-
+            bool imgFour = clsMedia.IsFileIsEmpty(ImageFour);
+            bool imgFive = clsMedia.IsFileIsEmpty(ImageFive);
+            bool imgSix = clsMedia.IsFileIsEmpty(ImageSix);
+            bool imgSeven = clsMedia.IsFileIsEmpty(ImageSeven);
+            bool imgEight = clsMedia.IsFileIsEmpty(ImageEight);
+            bool imgNine = clsMedia.IsFileIsEmpty(ImageNine);
 
            
-            imagesDTO.ImageOnePath = await clsUitil.UploadPropertyImages(ImageOne , _configuration , imgOne);
-            imagesDTO.ImageTwoPath = await clsUitil.UploadPropertyImages(ImageTwo, _configuration , imgTwo);
-            imagesDTO.ImageThreePath = await clsUitil.UploadPropertyImages(ImageThree, _configuration , imgThree);
-            imagesDTO.ImageFourPath = await clsUitil.UploadPropertyImages(ImageFour, _configuration , imgFour);
-            imagesDTO.ImageFivePath = await clsUitil.UploadPropertyImages(ImageFive, _configuration, imgFive);
-            imagesDTO.ImageSixPath = await clsUitil.UploadPropertyImages(ImageSix, _configuration, imgSix);
-            imagesDTO.ImageSevenPath = await clsUitil.UploadPropertyImages(ImageSeven, _configuration, imgSeven);
-            imagesDTO.ImageNinePath = await clsUitil.UploadPropertyImages(ImageEight, _configuration, imgEight);
-            imagesDTO.ImageEightPath = await clsUitil.UploadPropertyImages(ImageNine, _configuration, imgNine);
+
+           
+            imagesDTO.ImageOnePath = await clsMedia.UploadPropertyImages(ImageOne , _configuration , imgOne);
+            imagesDTO.ImageTwoPath = await clsMedia.UploadPropertyImages(ImageTwo, _configuration , imgTwo);
+            imagesDTO.ImageThreePath = await clsMedia.UploadPropertyImages(ImageThree, _configuration , imgThree);
+            imagesDTO.ImageFourPath = await clsMedia.UploadPropertyImages(ImageFour, _configuration , imgFour);
+            imagesDTO.ImageFivePath = await clsMedia.UploadPropertyImages(ImageFive, _configuration, imgFive);
+            imagesDTO.ImageSixPath = await clsMedia.UploadPropertyImages(ImageSix, _configuration, imgSix);
+            imagesDTO.ImageSevenPath = await clsMedia.UploadPropertyImages(ImageSeven, _configuration, imgSeven);
+            imagesDTO.ImageNinePath = await clsMedia.UploadPropertyImages(ImageEight, _configuration, imgEight);
+            imagesDTO.ImageEightPath = await clsMedia.UploadPropertyImages(ImageNine, _configuration, imgNine);
 
 
 
            if(imgOne || imgTwo || imgThree )
             {
 
-                clsUitil.DeleteFile(ImageOne, Images.ImageOnePath);
-                clsUitil.DeleteFile(ImageTwo, Images.ImageTwoPath);
-                clsUitil.DeleteFile(ImageThree, Images.ImageThreePath);
+                clsMedia.DeleteFile(ImageOne, Images.ImageOnePath);
+                clsMedia.DeleteFile(ImageTwo, Images.ImageTwoPath);
+                clsMedia.DeleteFile(ImageThree, Images.ImageThreePath);
 
                 
                 
-                if(Images.ImageFourPath != "") clsUitil.DeleteFile(ImageFour, Images.ImageFourPath);
-                if (Images.ImageFivePath != "") clsUitil.DeleteFile(ImageFive, Images.ImageFivePath);
+                if(Images.ImageFourPath != "") clsMedia.DeleteFile(ImageFour, Images.ImageFourPath);
+                if (Images.ImageFivePath != "") clsMedia.DeleteFile(ImageFive, Images.ImageFivePath);
 
 
-                if (Images.ImageSixPath != "") clsUitil.DeleteFile(ImageSix, Images.ImageSixPath);
-                if (Images.ImageSevenPath != "") clsUitil.DeleteFile(ImageSeven, Images.ImageSevenPath);
+                if (Images.ImageSixPath != "") clsMedia.DeleteFile(ImageSix, Images.ImageSixPath);
+                if (Images.ImageSevenPath != "") clsMedia.DeleteFile(ImageSeven, Images.ImageSevenPath);
 
-                if (Images.ImageEightPath != "") clsUitil.DeleteFile(ImageEight, Images.ImageEightPath);
-                if (Images.ImageNinePath != "") clsUitil.DeleteFile(ImageNine, Images.ImageNinePath);
+                if (Images.ImageEightPath != "") clsMedia.DeleteFile(ImageEight, Images.ImageEightPath);
+                if (Images.ImageNinePath != "") clsMedia.DeleteFile(ImageNine, Images.ImageNinePath);
 
 
                 Images.ImageOnePath = imagesDTO.ImageOnePath;
@@ -209,14 +198,11 @@ namespace PropertyRentingApi.Controllers
 
             }
 
-         
             return Ok(Images.IDTO);
-
-
         }
 
 
-        [HttpGet("GetContainerByID", Name = "GetContainerByID")] // Marks this method to respond to HTTP GET requests.
+        [HttpGet("GetContainerByID", Name = "GetContainerByID")] 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -232,7 +218,7 @@ namespace PropertyRentingApi.Controllers
             PR_BusinessLayer.clsImages Container = PR_BusinessLayer.clsImages.Find(ContainerID);
             if (Container == null)
             {
-                return NotFound($"Property with ID {ContainerID} not found.");
+                return NotFound($"Images container with ID  = {ContainerID} is not found.");
             }
 
             ImagesDTO IDTO = Container.IDTO;
@@ -240,6 +226,25 @@ namespace PropertyRentingApi.Controllers
             return Ok(IDTO);
         }
 
+        //[Authorize]
+        [HttpDelete("DeleteContainerImages", Name = "DeleteContainerImages")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<string> DeleteContainerImages(int ContainerId)
+        {
+            if (ContainerId < 1)
+            {
+                return BadRequest($"Not accepted ID {ContainerId}");
+            }
+          
+
+            if (PR_BusinessLayer.clsImages.DeleteContaninerImagesOnlyWhenPropertyFailed(ContainerId) != -1)
+
+                return Ok($"Container images with ID {ContainerId} has been deleted.");
+            else
+                return NotFound($"Container images  with ID {ContainerId} not found!");
+        }
 
     }
 }

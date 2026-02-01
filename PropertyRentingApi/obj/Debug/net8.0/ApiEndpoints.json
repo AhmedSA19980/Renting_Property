@@ -1,7 +1,121 @@
 [
   {
+    "ContainingType": "PropertyRentingApi.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Clientdto",
+        "Type": "SharedDTOLayer.Tokens.TokensDTO.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "UserLogin"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.AuthController",
+    "Method": "RefreshToken",
+    "RelativePath": "api/Auth/refresh-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "token",
+        "Type": "SharedDTOLayer.Tokens.TokensDTO.RefreshTokenRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "refresh-token"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.AuthController",
+    "Method": "RevokeToken",
+    "RelativePath": "api/Auth/revoke-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Token",
+        "Type": "SharedDTOLayer.Tokens.TokensDTO.RevokeTokenRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 403
+      }
+    ],
+    "EndpointName": "Revoke-token"
+  },
+  {
     "ContainingType": "PropertyRentingApi.Controllers.ClientsController",
-    "Method": "AddStudent",
+    "Method": "AddClient",
     "RelativePath": "api/Clients/Add",
     "HttpMethod": "POST",
     "IsController": true,
@@ -9,13 +123,13 @@
     "Parameters": [
       {
         "Name": "ClientDTO",
-        "Type": "PR_DataAccessLayer.FullClientDTO",
+        "Type": "SharedDTOLayer.clients.clientsDTO.FullClientDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.FullClientDTO",
+        "Type": "SharedDTOLayer.clients.clientsDTO.FullClientDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -44,7 +158,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "personID",
+        "Name": "ClientID",
         "Type": "System.Int32",
         "IsRequired": false
       }
@@ -67,6 +181,24 @@
           "text/json"
         ],
         "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 403
       }
     ],
     "EndpointName": "BlockClient"
@@ -81,13 +213,13 @@
     "Parameters": [
       {
         "Name": "Clientdto",
-        "Type": "PR_DataAccessLayer.ClientDTO",
+        "Type": "SharedDTOLayer.clients.clientsDTO.ChangePasswordDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.ClientDTO",
+        "Type": "SharedDTOLayer.clients.clientsDTO.ClientDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -102,7 +234,7 @@
           "application/json",
           "text/json"
         ],
-        "StatusCode": 400
+        "StatusCode": 404
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
@@ -111,7 +243,16 @@
           "application/json",
           "text/json"
         ],
-        "StatusCode": 404
+        "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 403
       }
     ],
     "EndpointName": "ChangePass"
@@ -132,7 +273,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.ClientDTO",
+        "Type": "SharedDTOLayer.clients.clientsDTO.GetClientDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -160,6 +301,96 @@
       }
     ],
     "EndpointName": "GetClientInfoId"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.ClientsController",
+    "Method": "GetClientIdByEmail",
+    "RelativePath": "api/Clients/GetClientIdByEmail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetClientIdByEmail"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.ClientsController",
+    "Method": "GetClientIdByPersonID",
+    "RelativePath": "api/Clients/GetClientIdByPersonID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PersonID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetClientIdByPersonID"
   },
   {
     "ContainingType": "PropertyRentingApi.Controllers.ClientsController",
@@ -222,7 +453,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.FullClientDTO",
+        "Type": "SharedDTOLayer.clients.clientsDTO.FullClientDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -260,7 +491,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "personID",
+        "Name": "ClientID",
         "Type": "System.Int32",
         "IsRequired": false
       }
@@ -289,51 +520,6 @@
   },
   {
     "ContainingType": "PropertyRentingApi.Controllers.ClientsController",
-    "Method": "Login",
-    "RelativePath": "api/Clients/Login",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Clientdto",
-        "Type": "PR_DataAccessLayer.ClientDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "PR_DataAccessLayer.ClientDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      },
-      {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 400
-      },
-      {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 404
-      }
-    ],
-    "EndpointName": "UserLogin"
-  },
-  {
-    "ContainingType": "PropertyRentingApi.Controllers.ClientsController",
     "Method": "UnBlockPerson",
     "RelativePath": "api/Clients/UnBlockClient",
     "HttpMethod": "PUT",
@@ -341,7 +527,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "personID",
+        "Name": "ClientID",
         "Type": "System.Int32",
         "IsRequired": false
       }
@@ -364,13 +550,31 @@
           "text/json"
         ],
         "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 403
       }
     ],
     "EndpointName": "UnBlockClient"
   },
   {
     "ContainingType": "PropertyRentingApi.Controllers.ClientsController",
-    "Method": "UpdateStudent",
+    "Method": "UpdateClient",
     "RelativePath": "api/Clients/UpdateClientById",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -383,13 +587,13 @@
       },
       {
         "Name": "ClientDTO",
-        "Type": "PR_DataAccessLayer.FullClientDTO",
+        "Type": "SharedDTOLayer.clients.clientsDTO.UpdateClientDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.FullClientDTO",
+        "Type": "SharedDTOLayer.clients.clientsDTO.FullClientDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -529,6 +733,51 @@
   },
   {
     "ContainingType": "PropertyRentingApi.Controllers.ContainerController",
+    "Method": "DeleteContainerImages",
+    "RelativePath": "api/Container/DeleteContainerImages",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ContainerId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "DeleteContainerImages"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.ContainerController",
     "Method": "GetContainerByID",
     "RelativePath": "api/Container/GetContainerByID",
     "HttpMethod": "GET",
@@ -543,7 +792,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PR_DataAccessLayer.ImagesDTO, PR_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[SharedDTOLayer.Images.ImagesDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -684,7 +933,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PR_DataAccessLayer.CountryDTO, PR_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[SharedDTOLayer.Countries.CountriesDTO.CountryDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -939,42 +1188,6 @@
   },
   {
     "ContainingType": "PropertyRentingApi.Controllers.DiscountController",
-    "Method": "AddDiscount",
-    "RelativePath": "api/Discount/AddDiscount",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "DiscountDTO",
-        "Type": "PR_DataAccessLayer.DiscountDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "PR_DataAccessLayer.DiscountDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 201
-      },
-      {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 400
-      }
-    ],
-    "EndpointName": "AddDiscount"
-  },
-  {
-    "ContainingType": "PropertyRentingApi.Controllers.DiscountController",
     "Method": "AddDiscountToProperty",
     "RelativePath": "api/Discount/AddDiscountToProperty",
     "HttpMethod": "POST",
@@ -1004,7 +1217,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.DiscountDTO",
+        "Type": "SharedDTOLayer.Offer.DiscountDTO.DiscountDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1130,7 +1343,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[PR_DataAccessLayer.PropertyDiscountDTO, PR_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[SharedDTOLayer.Offer.DiscountDTO.PropertyDiscountDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1175,7 +1388,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[PR_DataAccessLayer.DiscountDTO, PR_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[SharedDTOLayer.Offer.DiscountDTO.DiscountDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1220,7 +1433,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PR_DataAccessLayer.DiscountDTO, PR_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[SharedDTOLayer.Offer.DiscountDTO.DiscountDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1303,19 +1516,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "DiscontId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "DiscountDTO",
-        "Type": "PR_DataAccessLayer.DiscountDTO",
+        "Type": "SharedDTOLayer.Offer.DiscountDTO.DiscountDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.DiscountDTO",
+        "Type": "SharedDTOLayer.Offer.DiscountDTO.DiscountDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1336,6 +1544,186 @@
     "EndpointName": "UpdateDiscount"
   },
   {
+    "ContainingType": "PropertyRentingApi.Controllers.EarningController",
+    "Method": "GetAllOwnerEarnings",
+    "RelativePath": "api/Earning/GetAllOwnerEarnings",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ClientID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.ICollection\u00601[[SharedDTOLayer.Earning.AllOwnerEarningsDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetAllOwnerEarnings"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.EarningController",
+    "Method": "GetAllOwnerEarningsByProperty",
+    "RelativePath": "api/Earning/GetAllOwnerEarningsByProperty",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PropertyID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.ICollection\u00601[[SharedDTOLayer.Earning.AllOwnerEarningsByPropertyDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetAllOwnerEarningsByProperty"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.EarningController",
+    "Method": "GetTotalIncomeByProperty",
+    "RelativePath": "api/Earning/GetTotalIncomeByProperty",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PropertyId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Decimal",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetTotalIncomeByProperty"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.EarningController",
+    "Method": "SettleClientIncomeByPeriod",
+    "RelativePath": "api/Earning/SettleClientIncomeByPeriod",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IncomeValues",
+        "Type": "SharedDTOLayer.Income.IncomesDTO.SettleClientIncomeByPeriodValuesDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SharedDTOLayer.Income.IncomesDTO.SettleClientIncomeByPeriodDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "SettleClientIncomeByPeriod"
+  },
+  {
     "ContainingType": "PropertyRentingApi.Controllers.PaymentController",
     "Method": "ConfirmPaymentIntent",
     "RelativePath": "api/Payment/confirm-payment-intent",
@@ -1353,12 +1741,140 @@
   },
   {
     "ContainingType": "PropertyRentingApi.Controllers.PaymentController",
-    "Method": "CreatePaymentIntent",
-    "RelativePath": "api/Payment/create-payment-intent",
+    "Method": "CreateCheckoutSessionAsync",
+    "RelativePath": "api/Payment/CreateCheckoutSessionAsync",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "SharedDTOLayer.Payments.PaymentsDTO.PaymentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.PaymentController",
+    "Method": "GetAllPaymentsByClientID",
+    "RelativePath": "api/Payment/GetAllPaymentsByClientID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ClientID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.ICollection\u00601[[SharedDTOLayer.Payments.PaymentsDTO.ClientPayments, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetAllPaymentsByClientID"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.PaymentController",
+    "Method": "GetPaymentDetailByBookingId",
+    "RelativePath": "api/Payment/GetPaymentDetailByBookingId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "BookingId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SharedDTOLayer.Payments.PaymentsDTO.PaymentDetailDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetPaymentDetailByBookingId"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.PaymentController",
+    "Method": "PaymentSuccess",
+    "RelativePath": "api/Payment/payment/success",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "session_id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.PaymentController",
+    "Method": "GetPaymentStatus",
+    "RelativePath": "api/Payment/status/{sessionId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -1412,13 +1928,13 @@
     "Parameters": [
       {
         "Name": "newPropertyDTO",
-        "Type": "PR_DataAccessLayer.PropertyDTO",
+        "Type": "SharedDTOLayer.Properties_.PropertiesDTO.PropertyDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.PropertyDTO",
+        "Type": "SharedDTOLayer.Properties_.PropertiesDTO.PropertyDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1448,7 +1964,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PR_DataAccessLayer.PropertyDTO, PR_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[SharedDTOLayer.Properties_.PropertiesDTO.PropertyDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1470,6 +1986,81 @@
   },
   {
     "ContainingType": "PropertyRentingApi.Controllers.PropertyController",
+    "Method": "GetAllActiveProperties",
+    "RelativePath": "api/Property/AllActive",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[SharedDTOLayer.Properties_.PropertiesDTO.PropertyDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetAllActiveProperties"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.PropertyController",
+    "Method": "GetPropertiesAndStatusByClientID",
+    "RelativePath": "api/Property/GetPropertiesAndStatusByClientID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ClientID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.ICollection\u00601[[SharedDTOLayer.Properties_.PropertiesDTO.PropertyStatusDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetPropertiesAndStatusByClientID"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.PropertyController",
     "Method": "GetPropertyById",
     "RelativePath": "api/Property/GetPropertyByID",
     "HttpMethod": "GET",
@@ -1484,7 +2075,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PR_DataAccessLayer.PropertyDTO, PR_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[SharedDTOLayer.Properties_.PropertiesDTO.PropertyDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1529,7 +2120,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PR_DataAccessLayer.PropertyDTOWithContainerDTO, PR_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[SharedDTOLayer.Properties_.PropertiesDTO.PropertyDTOWithContainerDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1703,7 +2294,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PR_DataAccessLayer.PropertyDTO, PR_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[SharedDTOLayer.Properties_.PropertiesDTO.PropertyDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1732,19 +2323,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Propertyid",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "updatedProperty",
-        "Type": "PR_DataAccessLayer.PropertyDTO",
+        "Name": "updatedPropertyDTO",
+        "Type": "SharedDTOLayer.Properties_.PropertiesDTO.PropertyDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.PropertyDTO",
+        "Type": "SharedDTOLayer.Properties_.PropertiesDTO.PropertyDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1772,6 +2358,141 @@
       }
     ],
     "EndpointName": "UpdateProperty"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.PropertyOwnerController",
+    "Method": "GetAllPropertiesByClientID",
+    "RelativePath": "api/PropertyOwner/GetAllPropertiesByClientID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ClientID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[SharedDTOLayer.ProperiesOwner.PropertiesOwnerDTO.PropertyOwnerDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetAllPropertiesByClientID"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.PropertyOwnerController",
+    "Method": "getPropertyClientIDbyPropertyID",
+    "RelativePath": "api/PropertyOwner/getPropertyClientIDbyPropertyID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PropertyID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "getPropertyClientIDbyPropertyID"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.PropertyOwnerController",
+    "Method": "GetDicountById",
+    "RelativePath": "api/PropertyOwner/getPropertyOwnerbyID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PropertyOwnerID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[SharedDTOLayer.ProperiesOwner.PropertiesOwnerDTO.PropertyOwnerDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "getPropertyOwnerbyID"
   },
   {
     "ContainingType": "PropertyRentingApi.Controllers.PropertyTypeController",
@@ -1816,47 +2537,6 @@
   },
   {
     "ContainingType": "PropertyRentingApi.Controllers.PropertyTypeController",
-    "Method": "UpdatePropertyTypeID",
-    "RelativePath": "api/PropertyType/{updatePTypeByID}",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "updatePTypeByID",
-        "Type": "System.Byte",
-        "IsRequired": true
-      },
-      {
-        "Name": "propertyTypeDTO",
-        "Type": "PR_DataAccessLayer.PropertyTypeDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "PR_DataAccessLayer.PropertyTypeDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 201
-      },
-      {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 400
-      }
-    ],
-    "EndpointName": "UpdatePropertyType"
-  },
-  {
-    "ContainingType": "PropertyRentingApi.Controllers.PropertyTypeController",
     "Method": "AddPropertyType",
     "RelativePath": "api/PropertyType/AddPropertyType",
     "HttpMethod": "POST",
@@ -1865,13 +2545,13 @@
     "Parameters": [
       {
         "Name": "propertyTypeDTO",
-        "Type": "PR_DataAccessLayer.PropertyTypeDTO",
+        "Type": "SharedDTOLayer.PropertyTypes.PropertyTypesDTO.PropertyTypeDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.PropertyTypeDTO",
+        "Type": "SharedDTOLayer.PropertyTypes.PropertyTypesDTO.PropertyTypeDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1887,6 +2567,33 @@
           "text/json"
         ],
         "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 403
       }
     ],
     "EndpointName": "AddPropertyTypeName"
@@ -1901,7 +2608,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PR_DataAccessLayer.PropertyTypeDTO, PR_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[SharedDTOLayer.PropertyTypes.PropertyTypesDTO.PropertyTypeDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -2018,7 +2725,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PR_DataAccessLayer.PropertyTypeDTO, PR_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[SharedDTOLayer.PropertyTypes.PropertyTypesDTO.PropertyTypeDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -2048,6 +2755,60 @@
     "EndpointName": "GetPropertyTypeByID"
   },
   {
+    "ContainingType": "PropertyRentingApi.Controllers.PropertyTypeController",
+    "Method": "UpdatePropertyTypeID",
+    "RelativePath": "api/PropertyType/UpdatePropertyType",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "propertyTypeDTO",
+        "Type": "SharedDTOLayer.PropertyTypes.PropertyTypesDTO.PropertyTypeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SharedDTOLayer.PropertyTypes.PropertyTypesDTO.PropertyTypeDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 403
+      }
+    ],
+    "EndpointName": "UpdatePropertyType"
+  },
+  {
     "ContainingType": "PropertyRentingApi.Controllers.ReservationController",
     "Method": "AddBook",
     "RelativePath": "api/Reservation/Add",
@@ -2057,13 +2818,13 @@
     "Parameters": [
       {
         "Name": "ReservationDTO",
-        "Type": "PR_DataAccessLayer.BookingDTO",
+        "Type": "SharedDTOLayer.Books.BooksDTO.BookingUpsertDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.BookingDTO",
+        "Type": "SharedDTOLayer.Books.BooksDTO.BookingUpsertDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -2079,6 +2840,24 @@
           "text/json"
         ],
         "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 403
       }
     ],
     "EndpointName": "AddBook"
@@ -2120,6 +2899,24 @@
           "text/json"
         ],
         "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 403
       }
     ],
     "EndpointName": "DeleteReservation"
@@ -2150,7 +2947,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.ReservationDTO",
+        "Type": "SharedDTOLayer.Books.BooksDTO.CheckForActiveReservationDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -2195,7 +2992,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.BookingDTO",
+        "Type": "SharedDTOLayer.Books.BooksDTO.BookingDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -2226,26 +3023,84 @@
   },
   {
     "ContainingType": "PropertyRentingApi.Controllers.ReservationController",
-    "Method": "UpdateStudent",
+    "Method": "UpdateReservationDate",
     "RelativePath": "api/Reservation/UpdateReservationDate",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "UpdateReservationById",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "ReservationDTO",
-        "Type": "PR_DataAccessLayer.BookingUpdateDTO",
+        "Type": "SharedDTOLayer.Books.BooksDTO.BookingUpdateDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "PR_DataAccessLayer.BookingUpdateDTO",
+        "Type": "SharedDTOLayer.Books.BooksDTO.BookingUpsertDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 403
+      }
+    ],
+    "EndpointName": "UpdateReservationDate"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.RoleController",
+    "Method": "GetRoleById",
+    "RelativePath": "api/Role/GetRoleById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "logsId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SharedDTOLayer.Role.ClientsRoleLogsDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -2272,6 +3127,159 @@
         "StatusCode": 404
       }
     ],
-    "EndpointName": "UpdateReservationDate"
+    "EndpointName": "GetRoleById"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.RoleController",
+    "Method": "RoleLogs",
+    "RelativePath": "api/Role/RoleLogs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[SharedDTOLayer.Role.ClientsRoleLogsDTO, SharedDTOLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "RoleLogs"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.RoleController",
+    "Method": "SetRole",
+    "RelativePath": "api/Role/SetRole",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "client",
+        "Type": "SharedDTOLayer.Role.AddClientRoleLogDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 403
+      }
+    ],
+    "EndpointName": "SetRole"
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.UserDataController",
+    "Method": "GetProtectedData",
+    "RelativePath": "api/UserData/data",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      }
+    ]
+  },
+  {
+    "ContainingType": "PropertyRentingApi.Controllers.WebhookController",
+    "Method": "Handle",
+    "RelativePath": "webhook",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "webhook"
   }
 ]
