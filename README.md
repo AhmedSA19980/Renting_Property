@@ -1,26 +1,27 @@
 # Renting_Property
 
 
-## Property Reservation Desktop Application (under development) Began Date: 2/2/2025
-1- User Account Management: Enables users to securely create, update, and delete their accounts, ensuring
-personalized access to the application's features.
+## Property Reservation Desktop Application (under development) Began Date: 2/2/2025 - V2
 
-2- Property Management: Allows users to browse and view detailed information about available properties. Property
-owners can efficiently create, update, and delete property listings, maintaining an accurate and up-to-date
-inventory.
 
-3- Booking & Cancellation: Provides a straightforward mechanism for users to book properties for a specified
-duration. Users also have the ability to cancel existing bookings, adhering to defined policies.
+Application Features Overview
 
-4- Discount Management (Property Owners): Empowers property owners to create, update, and cancel discounts for
-their properties, offering flexible pricing strategies.
+The application is a property rental management system designed with a secure, scalable, and user-friendly architecture.
 
-5- Property Search Functionality: Implements a robust search feature allowing users to easily find properties based
-on various criteria (e.g., location, availability, price range).
+User Account Management allows users to securely register, authenticate, update, and delete their accounts, ensuring personalized and protected access to system features.
 
-6- Secure Payment Integration: Leverages the Stripe API to ensure secure and reliable payment processing for
-bookings.
+Property Management enables users to browse detailed property listings, while property owners can create, update, and remove their properties to maintain an accurate and up-to-date inventory.
 
-7- RESTful API Communication: The application utilizes RESTful APIs for communication between the presentation
-tier (desktop application) and the underlying business logic and data access layers, adhering to a clean and
-scalable architecture
+Booking & Cancellation functionality provides a smooth reservation process, allowing users to book properties for specific durations and cancel bookings in accordance with defined policies.
+
+Discount Management empowers property owners to create, update, and cancel discounts, supporting flexible pricing strategies to increase occupancy and revenue.
+
+Advanced Property Search helps users quickly find suitable properties using filters such as location, availability, and price range.
+
+Secure Payment Integration is implemented using the Stripe API to ensure safe, reliable, and compliant payment processing for all bookings.
+
+Role-Based Access Control defines clear permissions for different user roles (Admin, Property Owner, User), improving security and system organization.
+
+Financial Tracking & Reporting allows users to view payment history, while property owners can monitor income summaries and transaction details.
+
+The system follows a RESTful API architecture, enabling efficient communication between the presentation layer, business logic, and data access layers, ensuring maintainability, scalability, and clean separation of concerns.
