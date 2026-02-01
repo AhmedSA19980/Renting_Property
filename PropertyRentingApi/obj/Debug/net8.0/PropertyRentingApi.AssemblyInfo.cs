@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PropertyRentingApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec951f028440c400c377b0e8c0121499e0e89cd3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d2c59e4df22881a2e273bad2756f6bdec1f0680")]
 [assembly: System.Reflection.AssemblyProductAttribute("PropertyRentingApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PropertyRentingApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

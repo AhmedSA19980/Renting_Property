@@ -489,7 +489,7 @@ namespace PR_DataAccessLayer
         }
 
 
-        public static async Task< bool> SetClientRole(AddClientRoleLogDTO Client)
+        public static async Task<bool> SetClientRole(AddClientRoleLogDTO Client)
         {
             int rowsAffected = 0;
             try
@@ -526,6 +526,127 @@ namespace PR_DataAccessLayer
                 Console.WriteLine("Error: " + ex.Message);
             }
             return rowsAffected > 0;
+        }
+
+
+
+        public static List<ClientsRoleLogsDTO> RoleLogs()
+        {
+
+            List<ClientsRoleLogsDTO> Clients = new List<ClientsRoleLogsDTO>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("SP_GetRoleLogs", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+
+
+                            while (reader.Read())
+
+                            {
+
+
+
+                                Clients.Add(new ClientsRoleLogsDTO(reader.GetInt32(reader.GetOrdinal("Id")),
+
+                                    reader.GetInt32(reader.GetOrdinal("AdminCommiteeId")),
+                                    reader.GetString(reader.GetOrdinal("AdminCommiteeName")),
+                                    reader.GetInt32(reader.GetOrdinal("RecipientId")),
+                                      reader.GetString(reader.GetOrdinal("RecipientName")),
+                                     reader.GetByte(reader.GetOrdinal("prev_Role")),
+                                      reader.GetByte(reader.GetOrdinal("new_Role")),
+
+                                      reader.GetDateTime(reader.GetOrdinal("DateRoleModified")),
+                                      reader.IsDBNull(reader.GetOrdinal("Report")) ? null : reader.GetString(reader.GetOrdinal("Report"))
+
+                                ));
+
+
+                            }
+
+                            reader.Close();
+
+                        }
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine("Error: " + e.ToString());
+            }
+
+            return Clients;
+
+        }
+
+
+
+        public static ClientsRoleLogsDTO GetRoleLogsById(int LogsId)
+        {
+
+
+            try
+            {
+
+
+                using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("SP_GetRoleLogsById", connection))
+                    {
+
+
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@Id", (object)LogsId ?? DBNull.Value);
+                        using (var reader = command.ExecuteReader())
+                        {
+
+                            if (reader.Read())
+                            {
+
+                                return new ClientsRoleLogsDTO(
+
+                                    reader.GetInt32(reader.GetOrdinal("Id")),
+
+                                    reader.GetInt32(reader.GetOrdinal("AdminCommiteeId")),
+                                    reader.GetString(reader.GetOrdinal("AdminCommiteeName")),
+                                    reader.GetInt32(reader.GetOrdinal("RecipientId")),
+                                      reader.GetString(reader.GetOrdinal("RecipientName")),
+                                     reader.GetByte(reader.GetOrdinal("prev_Role")),
+                                      reader.GetByte(reader.GetOrdinal("new_Role")),
+
+                                      reader.GetDateTime(reader.GetOrdinal("DateRoleModified")),
+                                      reader.IsDBNull(reader.GetOrdinal("Report")) ? null : reader.GetString(reader.GetOrdinal("Report"))
+                                    );
+
+
+                            }
+
+                            reader.Close();
+
+                        }
+                        connection.Close();
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+
+            }
+
+            return null;
         }
 
     }

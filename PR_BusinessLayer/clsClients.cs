@@ -17,9 +17,15 @@ namespace PR_BusinessLayer
         public string UserName { get; set; }
         public string Password { get; set; }
         public int PersonID { get; set; }
-       
 
-        public enum enRole {Admin = 1 , Provider = 2 , Cutomer = 3 ,  AdminAndProvider = 4}
+
+        public enum enRole
+        {
+            Admin = 1, Provider = 2, Cutomer = 3,
+            AdminAndProvider = 4, Accountant = 5,
+            Customer_Support_Agent = 7, Moderator_TrustAnd_Safety = 6
+        }
+
         public enRole Role { get; set; }
         public int getPersonID { get { return clsPerson.Find(PersonID).PersonID; } }
 
@@ -242,6 +248,19 @@ namespace PR_BusinessLayer
         {
             return clsPeopleData.GetClientIdByPersonID(PersonId);
         }
+
+
+        public static List<ClientsRoleLogsDTO> GetRoleLogs()
+        {
+            return clsClientsData.RoleLogs();
+        }
+
+        public static ClientsRoleLogsDTO GetRoleLogsById(int LogId)
+        {
+
+            return clsClientsData.GetRoleLogsById(LogId);
+        }
+
 
         public bool Save()
         {
