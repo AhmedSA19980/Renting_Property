@@ -10,7 +10,7 @@ namespace PropertyRentingApi.Utilities
         private readonly IConfiguration _configuration;
 
        
-        public  clsMedia(IConfiguration configuration) // Constructor injection
+        public  clsMedia(IConfiguration configuration) 
         {
             _configuration = configuration;
         }
@@ -37,18 +37,7 @@ namespace PropertyRentingApi.Utilities
 
             };
         }
-        //public static string GetMimeType(string filePath)
-        //{
-
-        //    var extension = Path.GetExtension(filePath).ToLowerInvariant();
-        //    return extension switch
-        //    {
-        //        ".jpg" or ".jpeg" => "image/jpeg",
-        //        ".png" => "image/png",
-        //        ".gif" => "image/gif",
-        //        _ => "application/octet-stream",
-        //    };
-        //}
+        
         public static bool IsFileIsEmpty(IFormFile imageFile)
         {
             return imageFile != null ? true : false;
