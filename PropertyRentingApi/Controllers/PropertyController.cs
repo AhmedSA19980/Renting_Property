@@ -1,17 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using PR_BusinessLayer;
 using PR_DataAccessLayer;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Data;
-using System.Security.Cryptography;
-using System.Xml.Linq;
-using FileSignatures;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using SharedDTOLayer.Images;
+using SharedDTOLayer.Properties_.PropertiesDTO;
+using SharedDTOLayer.ProperiesOwner.PropertiesOwnerDTO;
 
-using FileSignatures.Formats;
-using PropertyRentingApi.Utilities;
 
 namespace PropertyRentingApi.Controllers
 {
@@ -28,12 +22,31 @@ namespace PropertyRentingApi.Controllers
         public ActionResult<IEnumerable<PropertyDTO>> GetAllProperties()
         {
            
+
             List<PropertyDTO> PropertyList = PR_BusinessLayer.clsProperty.GetAllProperties();
             if (PropertyList.Count == 0)
             {
                 return NotFound("No Property is Found!");
             }
             return Ok(PropertyList); 
+
+        }
+
+        [HttpGet("AllActive", Name = "GetAllActiveProperties")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+
+        public ActionResult<IEnumerable<PropertyDTO>> GetAllActiveProperties()
+        {
+
+
+            List<PropertyDTO> PropertyList = PR_BusinessLayer.clsProperty.GetAllActiveProperties();
+            if (PropertyList.Count == 0)
+            {
+                return NotFound("No Property is Found!");
+            }
+            return Ok(PropertyList);
 
         }
 
@@ -187,30 +200,31 @@ namespace PropertyRentingApi.Controllers
                 return NotFound($"Property with ID {PropertyID} not found.");
             }
 
-            return Ok(GetPropertyPrice);
+            return Ok(GetPropertyPrice); // price refers to US dollar
         }
 
-
-        [HttpPost( "Add", Name = "AddProperty")]
+        [Authorize]
+        [HttpPost( "Add", Name = "AddProperty")] // before adding property , add container(images) first  than comeback to property !
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<PropertyDTO> AddProperty(PropertyDTO newPropertyDTO)
         {
-            //we validate the data here
+            var userIdStr = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+            
             if (newPropertyDTO == null || newPropertyDTO.CountryID == -1 || newPropertyDTO.NumberOfBedrooms == -1 ||
                 newPropertyDTO.NumberOfBathrooms == -1 ||
                 string.IsNullOrEmpty(newPropertyDTO.City) || string.IsNullOrEmpty(newPropertyDTO.Address) ||
-                newPropertyDTO.ContainerID == -1 || string.IsNullOrEmpty(newPropertyDTO.Name))
+                newPropertyDTO.ContainerID == -1 || string.IsNullOrEmpty(newPropertyDTO.Name) || newPropertyDTO.Price ==0)
             {
                 return BadRequest("Invalid Property data.");
             }
 
           
-
-            PR_BusinessLayer.clsProperty property = new PR_BusinessLayer.clsProperty(new PropertyDTO(
+            PR_BusinessLayer.clsProperty property = new PR_BusinessLayer.clsProperty(new PropertyAndClientDTO(
+                Convert.ToInt32(userIdStr),
                 newPropertyDTO.PropertyID,
                 newPropertyDTO.CountryID, newPropertyDTO.City, newPropertyDTO.Address,
-                newPropertyDTO.PlaceDescription, newPropertyDTO.ContainerID,
+                newPropertyDTO.PlaceDescription , newPropertyDTO.ContainerID,
                 newPropertyDTO.NumberOfBedrooms
                 , newPropertyDTO.NumberOfBathrooms, 
                 newPropertyDTO.PropertyTypeID,
@@ -218,56 +232,66 @@ namespace PropertyRentingApi.Controllers
                 newPropertyDTO.Name));
            
             
+            PropertyAndClientDTO PropertyAndClient;
+
+           
             property.Save();
+
 
             newPropertyDTO.PropertyID = property.PropertyID;
 
            
-            return CreatedAtRoute("GetPropertyById", new { id = newPropertyDTO.PropertyID }, newPropertyDTO);
+            return CreatedAtRoute("GetPropertyById", new { id = newPropertyDTO.PropertyID }, property);
 
         }
 
 
-
-       
+        [Authorize]
         [HttpPut("UpdateProperty", Name = "UpdateProperty")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<PropertyDTO> UpdatedProperty(int Propertyid, PropertyDTO updatedProperty)
+        public ActionResult<PropertyDTO> UpdatedProperty( PropertyDTO updatedPropertyDTO)
         {
-            if (updatedProperty == null || updatedProperty.CountryID == -1 ||
-                updatedProperty.NumberOfBedrooms == -1 ||
-                updatedProperty.NumberOfBathrooms == -1 ||
-                string.IsNullOrEmpty(updatedProperty.City) ||
-                string.IsNullOrEmpty(updatedProperty.Address) ||
-                updatedProperty.ContainerID == -1 ||
-                string.IsNullOrEmpty(updatedProperty.Name)
+            if (updatedPropertyDTO == null || updatedPropertyDTO.CountryID == -1 ||
+                updatedPropertyDTO.NumberOfBedrooms == -1 ||
+                updatedPropertyDTO.NumberOfBathrooms == -1 ||
+                string.IsNullOrEmpty(updatedPropertyDTO.City) ||
+                string.IsNullOrEmpty(updatedPropertyDTO.Address) ||
+                updatedPropertyDTO.ContainerID == -1 ||
+                string.IsNullOrEmpty(updatedPropertyDTO.Name)
                 )
             {
                 return BadRequest("Invalid Property data.");
             }
+            int id = -1;
+            string userIdStr = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+            int PropertyOwner = PR_BusinessLayer.clsPropertyOwner.GetPropertyClientIdByPropertyID(updatedPropertyDTO.PropertyID);
            
 
-            PR_BusinessLayer.clsProperty Property = PR_BusinessLayer.clsProperty.Find(Propertyid);
+            if (Convert.ToInt32(userIdStr) != PropertyOwner) return Unauthorized("you're not authorized to update this Property, make sure you input your client id number ");
+
+
+
+            PR_BusinessLayer.clsProperty Property = PR_BusinessLayer.clsProperty.Find(updatedPropertyDTO.PropertyID);
 
 
             if (Property == null)
             {
-                return NotFound($"Property with ID {Propertyid} not found.");
+                return NotFound($"Property with ID {updatedPropertyDTO.PropertyID} not found.");
             }
 
 
-            Property.Name = updatedProperty.Name;
-            Property.CountryID = updatedProperty.CountryID;
-            Property.NumberOfBedrooms = updatedProperty.NumberOfBedrooms;
-            Property.NumberOfBathrooms = updatedProperty.NumberOfBathrooms;
-            Property.City = updatedProperty.City;
-            Property.Address = updatedProperty.Address;
-            Property.Price = updatedProperty.Price;
-            Property.PlaceDescription = updatedProperty.PlaceDescription;
-            Property.ContainerID = updatedProperty.ContainerID;
-            Property.PropertyTypeID = (sbyte)updatedProperty.PropertyTypeID;
+            Property.Name = updatedPropertyDTO.Name;
+            Property.CountryID = updatedPropertyDTO.CountryID;
+            Property.NumberOfBedrooms = updatedPropertyDTO.NumberOfBedrooms;
+            Property.NumberOfBathrooms = updatedPropertyDTO.NumberOfBathrooms;
+            Property.City = updatedPropertyDTO.City;
+            Property.Address = updatedPropertyDTO.Address;
+            Property.Price = updatedPropertyDTO.Price;
+            Property.PlaceDescription = updatedPropertyDTO.PlaceDescription;
+            Property.ContainerID = updatedPropertyDTO.ContainerID;
+            Property.PropertyTypeID = (sbyte)updatedPropertyDTO.PropertyTypeID;
 
 
 
@@ -279,7 +303,7 @@ namespace PropertyRentingApi.Controllers
         }
 
 
-       
+        [Authorize]
         [HttpDelete("{id}", Name = "DeleteProperty")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -292,6 +316,13 @@ namespace PropertyRentingApi.Controllers
             }
 
           
+            var userIdStr = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+            int PropertyOwner = PR_BusinessLayer.clsPropertyOwner.GetPropertyClientIdByPropertyID(id);
+
+            if (Convert.ToInt32(userIdStr) != PropertyOwner) return Unauthorized("you're not authorized to update this client, make sure you input your client id number ");
+
+
+
             if (PR_BusinessLayer.clsProperty.DeleteProperty(id) != -1)
 
                 return Ok($"Property with ID {id} has been deleted.");
@@ -299,6 +330,30 @@ namespace PropertyRentingApi.Controllers
                 return NotFound($"Property  with ID {id} not found. no rows deleted!");
         }
 
+
+
+        [HttpGet("GetPropertiesAndStatusByClientID", Name = "GetPropertiesAndStatusByClientID")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+        public ActionResult<ICollection<PropertyStatusDTO>> GetPropertiesAndStatusByClientID(int ClientID)
+        {
+
+            if (ClientID < 0)
+            {
+
+                return BadRequest($"Not accepted ID {ClientID}");
+            }
+
+            ICollection<PropertyStatusDTO> Properties = PR_BusinessLayer.clsProperty.GetAllPropertiesByClientID(ClientID);
+            if (Properties == null)
+            {
+                return NotFound($"Property Owner with client ID {ClientID} is not found.");
+            }
+
+            return Ok(Properties);
+        }
 
 
     }
