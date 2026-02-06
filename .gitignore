@@ -1,0 +1,12 @@
+# Visual Studio
+.vs/
+bin/
+obj/
+
+# ASP.NET Core
+*.user
+*.cache
+*.AssemblyInfo.cs
+
+# Logs
+*.log
