@@ -48,8 +48,6 @@ namespace PropertyRentingApi.Controllers
             catch (Exception ex)
             {
                
-                // Log the exception for debugging purposes (ensure sensitive info isn't logged in production)
-                // _logger.LogError(ex, "Error during login attempt for user: {UserName}", Clientdto.UserName);
                 return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred. Please try again later.");
             }
 
@@ -57,7 +55,7 @@ namespace PropertyRentingApi.Controllers
 
 
 
-        public AuthController(IConfiguration configuration) // Constructor injection
+        public AuthController(IConfiguration configuration) 
         {
             _configuration = configuration;
         }
