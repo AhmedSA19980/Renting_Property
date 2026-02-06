@@ -1,12 +1,273 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Renting_Property\\PropertyRentingApi\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\propertyrentingapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:propertyrentingapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\utilities\\clsuitil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:utilities\\clsuitil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\utilities\\clsglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:utilities\\clsglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\propertyrentingapi.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:propertyrentingapi.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\controllers\\propertytypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:controllers\\propertytypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\controllers\\countrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:controllers\\countrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\controllers\\containercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:controllers\\containercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|d:\\renting_property\\propertyrentingapi\\controllers\\clientscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DF0179B-AA31-46C7-B20D-BD95BE797DA8}|PropertyRentingApi.csproj|solutionrelative:controllers\\clientscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cf577b8c-4134-11d2-83e5-00c04f9902c1}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 99,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PropertyRentingApi",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\PropertyRentingApi.csproj",
+              "RelativeDocumentMoniker": "PropertyRentingApi.csproj",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\PropertyRentingApi.csproj*",
+              "RelativeToolTip": "PropertyRentingApi.csproj*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-06T21:44:21.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-06T21:06:59.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PropertyRentingApi.http",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\PropertyRentingApi.http",
+              "RelativeDocumentMoniker": "PropertyRentingApi.http",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\PropertyRentingApi.http",
+              "RelativeToolTip": "PropertyRentingApi.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-02-06T21:06:58.124Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-06T21:06:44.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ReservationController.cs",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\ReservationController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ReservationController.cs",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\ReservationController.cs",
+              "RelativeToolTip": "Controllers\\ReservationController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJoAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T14:10:20.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PropertyTypeController.cs",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\PropertyTypeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PropertyTypeController.cs",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\PropertyTypeController.cs",
+              "RelativeToolTip": "Controllers\\PropertyTypeController.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAkwJsAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T14:08:25.381Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PropertyController.cs",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\PropertyController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PropertyController.cs",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\PropertyController.cs",
+              "RelativeToolTip": "Controllers\\PropertyController.cs",
+              "ViewState": "AgIAAAcBAAAAAAAAAAAkwCUBAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T14:06:32.018Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DiscountController.cs",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\DiscountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DiscountController.cs",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\DiscountController.cs",
+              "RelativeToolTip": "Controllers\\DiscountController.cs",
+              "ViewState": "AgIAAMoAAAAAAAAAAAAkwPYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T14:05:09.035Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CustomerController.cs",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "Controllers\\CustomerController.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAYwF0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T14:04:56.579Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CountryController.cs",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\CountryController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CountryController.cs",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\CountryController.cs",
+              "RelativeToolTip": "Controllers\\CountryController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T14:03:41.466Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ContainerController.cs",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\ContainerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ContainerController.cs",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\ContainerController.cs",
+              "RelativeToolTip": "Controllers\\ContainerController.cs",
+              "ViewState": "AgIAAMsAAAAAAAAAAAAkwPQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T14:02:21.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ClientsController.cs",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\ClientsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ClientsController.cs",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\Controllers\\ClientsController.cs",
+              "RelativeToolTip": "Controllers\\ClientsController.cs",
+              "ViewState": "AgIAAHEBAAAAAAAAAAAkwJ0BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T13:58:54.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "clsGlobal.cs",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\Utilities\\clsGlobal.cs",
+              "RelativeDocumentMoniker": "Utilities\\clsGlobal.cs",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\Utilities\\clsGlobal.cs",
+              "RelativeToolTip": "Utilities\\clsGlobal.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA8AAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T13:58:50.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "clsUitil.cs",
+              "DocumentMoniker": "D:\\Renting_Property\\PropertyRentingApi\\Utilities\\clsUitil.cs",
+              "RelativeDocumentMoniker": "Utilities\\clsUitil.cs",
+              "ToolTip": "D:\\Renting_Property\\PropertyRentingApi\\Utilities\\clsUitil.cs",
+              "RelativeToolTip": "Utilities\\clsUitil.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T13:58:46.837Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
