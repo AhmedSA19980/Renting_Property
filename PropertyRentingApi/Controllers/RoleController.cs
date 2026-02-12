@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SharedDTOLayer.clients.clientsDTO;
-using SharedDTOLayer.Countries.CountriesDTO;
 using SharedDTOLayer.Role;
 using System.Security.Claims;
 
@@ -43,7 +41,7 @@ namespace PropertyRentingApi.Controllers
 
 
                 if (client.Report.Length == 0) { return BadRequest("Report is required field !"); }
-
+                
 
                 bool isRoleSetted = await PR_BusinessLayer.clsClients.SetRole(client);
                 if (!isRoleSetted)

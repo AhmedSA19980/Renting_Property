@@ -12,7 +12,7 @@
 
   <ItemGroup>
 
-    <ProjectReference Include="..\SharedDTOl\SharedDTOLayer.csproj" />
+    <ProjectReference Include="..\SharedDTO\SharedDTOLayer.csproj" />
   </ItemGroup>
 
 </Project>
