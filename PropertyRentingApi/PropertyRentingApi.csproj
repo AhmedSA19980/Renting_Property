@@ -14,6 +14,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PR_BusinessLayer\PR_BusinessLayer.csproj" />
+    <ProjectReference Include="..\SharedDTO\SharedDTOLayer.csproj" />
+    <ProjectReference Include="..\StripePayment\StripePayment.csproj" />
+    <ProjectReference Include="..\UtillsLayer\UtillsLayer.csproj" />
   </ItemGroup>
 
 </Project>

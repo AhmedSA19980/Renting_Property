@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Payment\**" />
+    <EmbeddedResource Remove="Payment\**" />
+    <None Remove="Payment\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DotNetEnv" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -16,12 +22,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PR_DataAccessLayer\PR_DataAccessLayer.csproj" />
-    <ProjectReference Include="..\SharedDTOl\SharedDTOLayer.csproj" />
+   
+    <ProjectReference Include="..\SharedDTO\SharedDTOLayer.csproj" />
     <ProjectReference Include="..\UtillsLayer\UtillsLayer.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Payment\" />
   </ItemGroup>
 
 </Project>

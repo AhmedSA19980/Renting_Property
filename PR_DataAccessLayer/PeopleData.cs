@@ -289,7 +289,7 @@ namespace PR_DataAccessLayer
 
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@PersonID", PersonID);
-                 
+
                         object result = command.ExecuteScalar();
 
                         if (result != null)
@@ -299,8 +299,8 @@ namespace PR_DataAccessLayer
                         }
                         else
                         {
-                          
-                            clientID = -1; 
+
+                            clientID = -1;
                         }
                     }
                 }
@@ -309,85 +309,12 @@ namespace PR_DataAccessLayer
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
-
-        public static int GetClientIdByEmail(string Email)
-        {
-            int PersonID = -1;
-
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
-                {
-                    connection.Open();
-
-                    using (SqlCommand command = new SqlCommand("SP_GetPersonIdByPersonEmail", connection))
-                    {
-
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@email", Email);
-                        //Console.WriteLine(command.CommandText);
-                        object result = command.ExecuteScalar();
-
-                        if (result != null )
-                        {
-
-                            PersonID = (int)result;
-                        }
-                        else
-                        {
-                            // Handle the case where no discount is found
-                            PersonID = -1; // Or another default value
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-
-
-            return PersonID;
-        }
-        public static int GetClientIdByPersonID(int PersonID)
-        {
-            int clientID = -1;
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))
-                {
-                    connection.Open();
-
-                    using (SqlCommand command = new SqlCommand("SP_GetClientIdByPersonID", connection))
-                    {
-
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@PersonID", PersonID);
-                 
-                        object result = command.ExecuteScalar();
-
-                        if (result != null)
-                        {
-
-                            clientID = (int)result;
-                        }
-                        else
-                        {
-                          
-                            clientID = -1; 
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-
             return clientID;
         }
+
+       
+         
+       
         public static bool IsUserBlocked(int personId)
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.Addresss))

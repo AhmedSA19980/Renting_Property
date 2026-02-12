@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 
-PR_BusinessLayer.Stripe.clsStripeConfiguration.ApiKey();
+PR_BusinessLayer.StripePayment.clsStripeConfiguration.ApiKey();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
