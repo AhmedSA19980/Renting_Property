@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Property\controls\ctrlDiscountObject.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Property\controls\ShowPropertyInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Note\Structure.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Main\" />
+    <Folder Include="medial\" />
+    <Folder Include="Person\" />
+    <Folder Include="Property\PropertyOwner\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.5" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+</Project>
