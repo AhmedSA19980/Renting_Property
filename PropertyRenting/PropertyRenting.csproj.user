@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="Blocking\frmBlockClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Blocking\frmUnblockClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Card\ctrlCardDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Card\frmAddUpdateCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Card\ShowClientCards.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Login\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Payment\controls\ctrlBill.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Payment\controls\ctrlTotaIncomeByFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Payment\controls\ctrlTotalIncomeByPeriod.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Payment\frmAllEarningsByProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Payment\frmBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Payment\frmClientPayments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Payment\frmEarnings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Payment\frmIncomeByPeriods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Property\BookAProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Property\controls\ctrlFindProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Property\controls\ctrlPropertyCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Property\controls\ctrlShowDiscount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Property\Discount\CreateUpdateAnOffer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Property\Discount\frmShowOffer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Property\FindProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Property\frmAddUpdateProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Property\frmManageProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Reservation\frmAddUpdateReservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Role\frmLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Role\frmSetRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Role\frmShowRoleLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\controls\ctrlUserCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="User\controls\ctrlUserWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="User\frmAddUpdateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\frmChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\frmShowUserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
