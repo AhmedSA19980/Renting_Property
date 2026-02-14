@@ -8,7 +8,7 @@ namespace PropertyRenting.User.controls
 {
     public partial class ctrlUserCard : UserControl
     {
-        private int _PersonID = -1;
+        
 
         public int clientId { get; set; }
         public ctrlUserCard()
@@ -31,7 +31,7 @@ namespace PropertyRenting.User.controls
 
             if (clientID != -1)
             {
-                var person = await LoadClientInfo(clientId); //await ApiClient.clsAPIFunctions<Models.Client>.GetAsync("Clients/getPersonInfo?clientID=", _LogId);
+                var person = await LoadClientInfo(clientId); 
                 lblClientId.Text = person.ClientID.ToString();
                 lblUsername.Text = person.UserName;
 
@@ -41,7 +41,7 @@ namespace PropertyRenting.User.controls
                 lblLastname.Text = person.LastName;
                 lblAddress.Text = person.Address;
                 lblDateOfBirth.Text = clsFormat.DateToShort(person.DateOfBirth);
-                //lblEmail.Text = clsGlobal.CurrentUser.email;
+              
                 lblGender.Text = person.Gender ? "Male" : "Female";
                 lblPhone.Text = person.Phone;
                 string Nationality = await loadNationality(person.NationalityCountryID);
