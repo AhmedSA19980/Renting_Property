@@ -48,7 +48,7 @@ namespace PropertyRenting.User
         {
             try
             {
-                List<Models.Country> countries =await ListCountries() ;//await ApiClient.clsAPIFunctions<List<Models.Country>>.GetAsync("Country/All"); ;
+                List<Models.Country> countries =await ListCountries() ;
                 if (countries != null)
                 {
                     DataTable dtCountries = PropertyRenting.ClassGlobal.clsConvertListToDataTable<Models.Country>.ToDataTable(countries);
