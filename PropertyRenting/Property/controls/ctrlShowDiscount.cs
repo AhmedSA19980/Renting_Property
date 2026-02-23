@@ -7,12 +7,6 @@ using System.Windows.Forms;
 
 
 
-
-
-
-
-
-
 namespace PropertyRenting.Property.controls
 {
    
@@ -38,7 +32,7 @@ namespace PropertyRenting.Property.controls
         {
             
             var Discount = await ApiClient.clsAPIFunctions<Models.Discount>.GetAsync("Discount/getDicountbyID?DicountID=", DiscountID);
-           // clsDiscount Discount = clsDiscount.Find(DiscountID);
+     
             if (Discount != null ){
 
                 lblDiscountID.Text = Convert.ToString( Discount.DiscountID);
@@ -52,9 +46,6 @@ namespace PropertyRenting.Property.controls
             else _RestValues();
 
         }
-        private void ShowDiscount_Load(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

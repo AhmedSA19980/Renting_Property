@@ -166,7 +166,7 @@
             Controls.Add(label);
             Name = "ctrlShowDiscount";
             Size = new System.Drawing.Size(435, 218);
-            Load += ShowDiscount_Load;
+          
             ResumeLayout(false);
             PerformLayout();
         }
