@@ -303,7 +303,7 @@ namespace PropertyRenting.Property
         private async Task<(int  ,  sbyte)> LoadLookupDataAsync( ) {
 
             var CountryIdTask =  ApiClient.clsAPIFunctions<int>.GetAsync("Country/CountryName?Name=", cbCountry.Text);
-            var PropertyTypeIdTask=  ApiClient.clsAPIFunctions<int>.GetAsync("PropertyType/PropertyName?PropertyTypeName=", cbPropertyType.Text);  //clsPropertyType.Find(cbPropertyType.Text).PropertyTypeID;
+            var PropertyTypeIdTask=  ApiClient.clsAPIFunctions<int>.GetAsync("PropertyType/PropertyName?PropertyTypeName=", cbPropertyType.Text);  
 
             await Task.WhenAll(CountryIdTask ,  PropertyTypeIdTask);
 
