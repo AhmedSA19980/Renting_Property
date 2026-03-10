@@ -20,7 +20,7 @@ namespace PropertyRenting.Reservation
     public partial class frmAddUpdateReservation : Form
     {
         public enum enMode { AddNew = 0, Update = 1 };
-        public enum enGendor { Male = 0, Female = 1 };
+    
         private enMode _Mode = enMode.AddNew;
 
         private int _ReservationID;
