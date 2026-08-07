@@ -14,9 +14,7 @@
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Note\Structure.txt" />
-  </ItemGroup>
+  
   <ItemGroup>
     <Folder Include="medial\" />
     <Folder Include="Person\" />
