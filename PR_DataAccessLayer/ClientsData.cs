@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using SharedDTOLayer.clients.clientsDTO;
+using SharedDTOLayer.Role;
 using System.Data;
 
 

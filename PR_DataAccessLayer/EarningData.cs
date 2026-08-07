@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using SharedDTOLayer.Earning;
 using SharedDTOLayer.Income.IncomesDTO;
 using SharedDTOLayer.Payments.PaymentsDTO;
 using System;
