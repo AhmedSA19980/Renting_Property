@@ -9,3 +9,15 @@ D:\DestopsApplications\SharedDTOl\obj\Debug\net8.0\SharedDTOLayer.dll
 D:\DestopsApplications\SharedDTOl\obj\Debug\net8.0\refint\SharedDTOLayer.dll
 D:\DestopsApplications\SharedDTOl\obj\Debug\net8.0\SharedDTOLayer.pdb
 D:\DestopsApplications\SharedDTOl\obj\Debug\net8.0\ref\SharedDTOLayer.dll
+D:\Renting_Property\SharedDTO\bin\Debug\net8.0\SharedDTOLayer.deps.json
+D:\Renting_Property\SharedDTO\bin\Debug\net8.0\SharedDTOLayer.dll
+D:\Renting_Property\SharedDTO\bin\Debug\net8.0\SharedDTOLayer.pdb
+D:\Renting_Property\SharedDTO\obj\Debug\net8.0\SharedDTOLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Renting_Property\SharedDTO\obj\Debug\net8.0\SharedDTOLayer.AssemblyInfoInputs.cache
+D:\Renting_Property\SharedDTO\obj\Debug\net8.0\SharedDTOLayer.AssemblyInfo.cs
+D:\Renting_Property\SharedDTO\obj\Debug\net8.0\SharedDTOLayer.csproj.CoreCompileInputs.cache
+D:\Renting_Property\SharedDTO\obj\Debug\net8.0\SharedDTOLayer.sourcelink.json
+D:\Renting_Property\SharedDTO\obj\Debug\net8.0\SharedDTOLayer.dll
+D:\Renting_Property\SharedDTO\obj\Debug\net8.0\refint\SharedDTOLayer.dll
+D:\Renting_Property\SharedDTO\obj\Debug\net8.0\SharedDTOLayer.pdb
+D:\Renting_Property\SharedDTO\obj\Debug\net8.0\ref\SharedDTOLayer.dll
