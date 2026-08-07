@@ -1692,8 +1692,8 @@
     },
     "SharedDTOLayer/1.0.0": {
       "type": "project",
-      "path": "../SharedDTOl/SharedDTOLayer.csproj",
-      "msbuildProject": "../SharedDTOl/SharedDTOLayer.csproj"
+      "path": "../SharedDTO/SharedDTOLayer.csproj",
+      "msbuildProject": "../SharedDTO/SharedDTOLayer.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1709,11 +1709,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DestopsApplications\\PR_DataAccessLayer\\PR_DataAccessLayer.csproj",
+      "projectUniqueName": "D:\\Renting_Property\\PR_DataAccessLayer\\PR_DataAccessLayer.csproj",
       "projectName": "PR_DataAccessLayer",
-      "projectPath": "D:\\DestopsApplications\\PR_DataAccessLayer\\PR_DataAccessLayer.csproj",
+      "projectPath": "D:\\Renting_Property\\PR_DataAccessLayer\\PR_DataAccessLayer.csproj",
       "packagesPath": "C:\\Users\\miche\\.nuget\\packages\\",
-      "outputPath": "D:\\DestopsApplications\\PR_DataAccessLayer\\obj\\",
+      "outputPath": "D:\\Renting_Property\\PR_DataAccessLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1734,8 +1734,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\DestopsApplications\\SharedDTOl\\SharedDTOLayer.csproj": {
-              "projectPath": "D:\\DestopsApplications\\SharedDTOl\\SharedDTOLayer.csproj"
+            "D:\\Renting_Property\\SharedDTO\\SharedDTOLayer.csproj": {
+              "projectPath": "D:\\Renting_Property\\SharedDTO\\SharedDTOLayer.csproj"
             }
           }
         }
@@ -1780,13 +1780,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DestopsApplications\\UtillsLayer\\UtillsLayer.csproj",
+      "projectUniqueName": "D:\\Renting_Property\\UtillsLayer\\UtillsLayer.csproj",
       "projectName": "UtillsLayer",
-      "projectPath": "D:\\DestopsApplications\\UtillsLayer\\UtillsLayer.csproj",
+      "projectPath": "D:\\Renting_Property\\UtillsLayer\\UtillsLayer.csproj",
       "packagesPath": "C:\\Users\\miche\\.nuget\\packages\\",
-      "outputPath": "D:\\DestopsApplications\\UtillsLayer\\obj\\",
+      "outputPath": "D:\\Renting_Property\\UtillsLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

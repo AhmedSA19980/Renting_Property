@@ -18,7 +18,6 @@
     <Content Include="Note\Structure.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Main\" />
     <Folder Include="medial\" />
     <Folder Include="Person\" />
     <Folder Include="Property\PropertyOwner\" />
