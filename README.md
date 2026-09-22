@@ -32,4 +32,4 @@ The system follows a RESTful API architecture, enabling efficient communication 
 ![image](https://github.com/AhmedSA19980/Renting_Property/blob/main/docs/main.png)
 ![image](https://github.com/AhmedSA19980/Renting_Property/blob/main/docs/Screenshot%20(340).png)
 
-to explore more visit [Link docs](https://github.com/AhmedSA19980/Renting_Property/tree/main/docs)
+to explore more visit [docs](https://github.com/AhmedSA19980/Renting_Property/tree/main/docs)
