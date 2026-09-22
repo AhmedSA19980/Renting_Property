@@ -25,3 +25,11 @@ Role-Based Access Control defines clear permissions for different user roles (Ad
 Financial Tracking & Reporting allows users to view payment history, while property owners can monitor income summaries and transaction details.
 
 The system follows a RESTful API architecture, enabling efficient communication between the presentation layer, business logic, and data access layers, ensuring maintainability, scalability, and clean separation of concerns.
+
+
+
+
+![image](https://github.com/AhmedSA19980/Renting_Property/blob/main/docs/main.png)
+![image](https://github.com/AhmedSA19980/Renting_Property/blob/main/docs/Screenshot%20(340).png)
+
+to explore more visit [Link docs](https://github.com/AhmedSA19980/Renting_Property/tree/main/docs)
